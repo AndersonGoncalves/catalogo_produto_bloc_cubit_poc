@@ -205,6 +205,7 @@ class UsuariohFormPageState extends State<UsuarioFormPage>
                                                             value ?? '',
                                                   ),
                                             WidgetTextFormField(
+                                              key: const Key('email_key'),
                                               labelText: 'Email',
                                               keyboardType:
                                                   TextInputType.emailAddress,
@@ -216,6 +217,14 @@ class UsuariohFormPageState extends State<UsuarioFormPage>
                                               isDense: true,
                                               border: true,
                                               controller: _emailController,
+                                              validator: (value) {
+                                                final email = value ?? '';
+                                                if (email.isEmpty ||
+                                                    !email.contains('@')) {
+                                                  return 'Informe um email válido';
+                                                }
+                                                return null;
+                                              },
                                               onSaved: (value) =>
                                                   _formData['email'] =
                                                       value ?? '',
@@ -307,6 +316,9 @@ class UsuariohFormPageState extends State<UsuarioFormPage>
                                                 bottom: 6,
                                               ),
                                               child: ElevatedButton(
+                                                key: const Key(
+                                                  'usuario_form_entrar_key',
+                                                ),
                                                 onPressed: _submit,
                                                 style: ElevatedButton.styleFrom(
                                                   shape: RoundedRectangleBorder(
@@ -331,6 +343,39 @@ class UsuariohFormPageState extends State<UsuarioFormPage>
                                                 ),
                                               ),
                                             ),
+                                            _authMode == AuthMode.login
+                                                ? Row(
+                                                    children: [
+                                                      Expanded(
+                                                        child: SignInButton(
+                                                          Buttons.Google,
+                                                          text:
+                                                              'Login com Google',
+                                                          elevation: 1,
+                                                          padding:
+                                                              const EdgeInsets.all(
+                                                                5,
+                                                              ),
+                                                          shape: OutlineInputBorder(
+                                                            borderRadius:
+                                                                BorderRadius.circular(
+                                                                  5,
+                                                                ),
+                                                            borderSide:
+                                                                BorderSide.none,
+                                                          ),
+                                                          onPressed: () {
+                                                            context
+                                                                .read<
+                                                                  UsuarioController
+                                                                >()
+                                                                .googleLogin();
+                                                          },
+                                                        ),
+                                                      ),
+                                                    ],
+                                                  )
+                                                : SizedBox.shrink(),
                                             _isLogin
                                                 ? WidgetTextButton(
                                                     'Esqueceu a senha?',
@@ -349,38 +394,7 @@ class UsuariohFormPageState extends State<UsuarioFormPage>
                                                     },
                                                   )
                                                 : SizedBox.shrink(),
-                                            _authMode == AuthMode.login
-                                                ? Padding(
-                                                    padding:
-                                                        const EdgeInsets.only(
-                                                          bottom: 15,
-                                                        ),
-                                                    child: SignInButton(
-                                                      Buttons.Google,
-                                                      text: 'Login com Google',
-                                                      elevation: 2,
-                                                      padding:
-                                                          const EdgeInsets.all(
-                                                            5,
-                                                          ),
-                                                      shape: OutlineInputBorder(
-                                                        borderRadius:
-                                                            BorderRadius.circular(
-                                                              5,
-                                                            ),
-                                                        borderSide:
-                                                            BorderSide.none,
-                                                      ),
-                                                      onPressed: () {
-                                                        context
-                                                            .read<
-                                                              UsuarioController
-                                                            >()
-                                                            .googleLogin();
-                                                      },
-                                                    ),
-                                                  )
-                                                : SizedBox.shrink(),
+
                                             widget.usuarioAnonimo
                                                 ? const SizedBox()
                                                 : WidgetTextButton(
