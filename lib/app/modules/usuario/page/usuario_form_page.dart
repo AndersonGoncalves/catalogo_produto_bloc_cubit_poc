@@ -21,7 +21,6 @@ class UsuarioFormPage extends StatefulWidget {
 
 class UsuariohFormPageState extends State<UsuarioFormPage>
     with SingleTickerProviderStateMixin {
-  bool _isLoading = false;
   late AuthMode? _authMode;
   final _formKey = GlobalKey<FormState>();
   final _emailController = TextEditingController();

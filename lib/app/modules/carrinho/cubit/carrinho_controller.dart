@@ -23,7 +23,7 @@ class CarrinhoController extends Cubit<CarrinhoState> {
       _carrinhoService.add(produto);
       emit(
         state.copyWith(
-          carrinhoItems: _carrinhoService.items.values.toList(),
+          items: _carrinhoService.items.values.toList(),
           isLoading: false,
           success: true,
         ),
@@ -45,7 +45,7 @@ class CarrinhoController extends Cubit<CarrinhoState> {
       _carrinhoService.remove(produtoId);
       emit(
         state.copyWith(
-          carrinhoItems: _carrinhoService.items.values.toList(),
+          items: _carrinhoService.items.values.toList(),
           isLoading: false,
           success: true,
         ),
@@ -67,7 +67,7 @@ class CarrinhoController extends Cubit<CarrinhoState> {
       _carrinhoService.removeSingleItem(produtoId);
       emit(
         state.copyWith(
-          carrinhoItems: _carrinhoService.items.values.toList(),
+          items: _carrinhoService.items.values.toList(),
           isLoading: false,
           success: true,
         ),
@@ -89,7 +89,7 @@ class CarrinhoController extends Cubit<CarrinhoState> {
       _carrinhoService.clear();
       emit(
         state.copyWith(
-          carrinhoItems: _carrinhoService.items.values.toList(),
+          items: _carrinhoService.items.values.toList(),
           isLoading: false,
           success: true,
         ),

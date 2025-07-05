@@ -4,26 +4,26 @@ class CarrinhoState {
   String? error;
   bool success = false;
   bool isLoading = false;
-  final List<Carrinho> carrinhoItems;
+  final List<Carrinho> items;
 
   CarrinhoState({
     this.error,
     this.success = false,
     this.isLoading = false,
-    this.carrinhoItems = const [],
+    this.items = const [],
   });
 
   CarrinhoState copyWith({
     String? error,
     bool? success,
     bool? isLoading,
-    List<Carrinho>? carrinhoItems,
+    List<Carrinho>? items,
   }) {
     return CarrinhoState(
       error: error ?? this.error,
       isLoading: isLoading ?? this.isLoading,
       success: success ?? this.success,
-      carrinhoItems: carrinhoItems ?? this.carrinhoItems,
+      items: items ?? this.items,
     );
   }
 }

@@ -99,7 +99,7 @@ class UsuarioController extends Cubit<UsuarioState> {
         emit(
           state.copyWith(
             isLoading: false,
-            error: 'Não foi ppossível converter o usuário anônimo',
+            error: 'Não foi possível converter o usuário anônimo',
           ),
         );
       }
@@ -107,7 +107,7 @@ class UsuarioController extends Cubit<UsuarioState> {
       emit(
         state.copyWith(
           isLoading: false,
-          error: 'Não foi ppossível converter o usuário anônimo: ${e.message}',
+          error: 'Não foi possível converter o usuário anônimo: ${e.message}',
         ),
       );
     }

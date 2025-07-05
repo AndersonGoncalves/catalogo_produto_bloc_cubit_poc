@@ -59,7 +59,7 @@ class _HomePageState extends State<HomePage> {
               }
             },
             builder: (context, state) {
-              final quantidade = state.carrinhoItems.length;
+              final quantidade = state.items.length;
               return IconButton(
                 onPressed: () {
                   _selectedPageIndex = 2;
@@ -124,7 +124,7 @@ class _HomePageState extends State<HomePage> {
                       }
                     },
                     builder: (context, state) {
-                      final quantidade = state.carrinhoItems.length;
+                      final quantidade = state.items.length;
                       return quantidade > 0
                           ? Badgee(
                               value: quantidade.toString(),
