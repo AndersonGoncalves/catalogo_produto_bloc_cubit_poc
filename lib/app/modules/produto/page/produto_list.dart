@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:catalogo_produto_poc/app/core/models/produto.dart';
 import 'package:catalogo_produto_poc/app/core/widget/widget_pesquisa.dart';
 import 'package:catalogo_produto_poc/app/modules/produto/page/produto_list_item.dart';
@@ -7,14 +8,9 @@ import 'package:catalogo_produto_poc/app/core/widget/widget_registro_nao_encontr
 
 class ProdutoList extends StatefulWidget {
   final List<Produto> _produtos;
-  final ProdutoController _controller;
 
-  const ProdutoList({
-    super.key,
-    required List<Produto> produtos,
-    required ProdutoController controller,
-  }) : _produtos = produtos,
-       _controller = controller;
+  const ProdutoList({super.key, required List<Produto> produtos})
+    : _produtos = produtos;
 
   @override
   State<ProdutoList> createState() => _ProdutoListState();
@@ -24,7 +20,7 @@ class _ProdutoListState extends State<ProdutoList> {
   List<Produto> produtos = [];
 
   Future<void> _refresh(BuildContext context) {
-    return widget._controller.load();
+    return context.read<ProdutoController>().load();
   }
 
   void _onSearch(String value) {
@@ -87,7 +83,6 @@ class _ProdutoListState extends State<ProdutoList> {
                             : ProdutoListItem(
                                 key: GlobalObjectKey(produtos[index]),
                                 produto: produtos[index],
-                                controller: widget._controller,
                               ),
                       ],
                     ),
