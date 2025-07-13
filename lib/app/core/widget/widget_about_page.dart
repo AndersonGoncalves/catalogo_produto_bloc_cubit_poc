@@ -234,7 +234,7 @@ class _WidgetAboutPageState extends State<WidgetAboutPage> {
                             );
                           },
                           child: Text(
-                            '1.3 - Provider (Provedor de gerência de estado)',
+                            '1.4 - Provider (Provedor de gerência de estado)',
                             style: TextStyle(
                               fontSize: 14,
                               color: context.primaryColor,
