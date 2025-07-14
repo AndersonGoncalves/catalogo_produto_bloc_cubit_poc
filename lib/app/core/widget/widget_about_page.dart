@@ -226,26 +226,6 @@ class _WidgetAboutPageState extends State<WidgetAboutPage> {
                       ),
 
                       Padding(
-                        padding: const EdgeInsets.only(top: 7, left: 10),
-                        child: InkWell(
-                          onTap: () {
-                            UrlLauncher.openUrl(
-                              'https://pub.dev/packages/provider',
-                            );
-                          },
-                          child: Text(
-                            '1.4 - Provider (Provedor de gerência de estado)',
-                            style: TextStyle(
-                              fontSize: 14,
-                              color: context.primaryColor,
-                              // decoration: TextDecoration.underline,
-                            ),
-                            textAlign: TextAlign.justify,
-                          ),
-                        ),
-                      ),
-
-                      Padding(
                         padding: const EdgeInsets.only(top: 15),
                         child: Text(
                           '2 - Backend',

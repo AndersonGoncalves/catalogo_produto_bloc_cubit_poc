@@ -13,7 +13,6 @@ Esse app utiliza o Bloc para gerenciar estados utilizando Cubit.
   - [Flutter](https://flutter.dev/)  
   - [Dart](https://dart.dev/)
   - [Bloc](https://pub.dev/packages/bloc)
-  - [Provider](https://pub.dev/packages/provider)
 - *Backend:*  
   - [Realtime Database](https://firebase.google.com/products/realtime-database) (armazenamento dos produtos)
   - [Firebase Authentication](https://firebase.google.com/products/auth) (autenticação anônima e por e-mail)  
