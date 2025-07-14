@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:catalogo_produto_poc/app/core/widget/widget_text_form_field.dart';
-import 'package:catalogo_produto_poc/app/services/usuario/usuario_service_impl.dart';
+import 'package:catalogo_produto_poc/app/modules/usuario/cubit/usuario_controller.dart';
 
 class WidgetPerfilPage extends StatefulWidget {
   const WidgetPerfilPage({super.key});
@@ -80,7 +80,7 @@ class _WidgetPerfilPageState extends State<WidgetPerfilPage> {
                                 enabled: false,
                                 initialValue:
                                     context
-                                        .read<UsuarioServiceImpl>()
+                                        .read<UsuarioController>()
                                         .user
                                         .displayName ??
                                     '',
@@ -100,7 +100,7 @@ class _WidgetPerfilPageState extends State<WidgetPerfilPage> {
                                 enabled: false,
                                 initialValue:
                                     context
-                                        .read<UsuarioServiceImpl>()
+                                        .read<UsuarioController>()
                                         .user
                                         .email ??
                                     '',

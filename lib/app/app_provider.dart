@@ -32,15 +32,6 @@ class AppProvider extends StatelessWidget {
             return UsuarioController(usuarioService: usuarioService);
           },
         ),
-        //Preciso do Provider nesse caso para acessar o usuário em várias partes do código, sem precisar passar o controller
-        Provider<UsuarioServiceImpl>(
-          create: (context) {
-            final usuarioRepository = UsuarioRepositoryImpl(
-              firebaseAuth: FirebaseAuth.instance,
-            );
-            return UsuarioServiceImpl(usuarioRepository: usuarioRepository);
-          },
-        ),
 
         //Produto
         BlocProvider<ProdutoController>(

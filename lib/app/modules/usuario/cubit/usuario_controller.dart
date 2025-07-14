@@ -1,4 +1,5 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:catalogo_produto_poc/app/core/exceptions/auth_exception.dart';
 import 'package:catalogo_produto_poc/app/services/usuario/usuario_service_impl.dart';
 import 'package:catalogo_produto_poc/app/modules/usuario/cubit/usuario_state.dart';
@@ -9,6 +10,10 @@ class UsuarioController extends Cubit<UsuarioState> {
   UsuarioController({required UsuarioServiceImpl usuarioService})
     : _usuarioService = usuarioService,
       super(UsuarioState());
+
+  User get user => _usuarioService.user;
+
+  Stream<User?> get authState => _usuarioService.authState;
 
   Future<void> register(String name, String email, String password) async {
     emit(state.copyWith(isLoading: true, error: null, success: false));

@@ -4,7 +4,7 @@ import 'package:provider/provider.dart';
 import 'package:catalogo_produto_poc/app/core/constants/rotas.dart';
 import 'package:catalogo_produto_poc/app/core/widget/widget_dialog.dart';
 import 'package:catalogo_produto_poc/app/modules/usuario/page/usuario_form_page.dart';
-import 'package:catalogo_produto_poc/app/services/usuario/usuario_service_impl.dart';
+import 'package:catalogo_produto_poc/app/modules/usuario/cubit/usuario_controller.dart';
 
 class WidgetDrawer extends StatefulWidget {
   final String? userName;
@@ -42,7 +42,7 @@ class _WidgetDrawerState extends State<WidgetDrawer> {
   }
 
   Future<void> _sair(BuildContext context) async {
-    context.read<UsuarioServiceImpl>().logout().then((value) {
+    context.read<UsuarioController>().logout().then((value) {
       if (!context.mounted) return;
       Navigator.of(context).pushReplacementNamed(Rotas.home);
     });
@@ -78,7 +78,7 @@ class _WidgetDrawerState extends State<WidgetDrawer> {
           }),
           const Divider(),
           _createItem(Icons.account_circle, 'Perfil', () {
-            if (context.read<UsuarioServiceImpl>().user.isAnonymous) {
+            if (context.read<UsuarioController>().user.isAnonymous) {
               Navigator.of(context).pop();
               Navigator.of(context).push(
                 CupertinoPageRoute(
@@ -99,7 +99,7 @@ class _WidgetDrawerState extends State<WidgetDrawer> {
           }),
           const Divider(),
           _createItem(Icons.exit_to_app, 'Sair', () {
-            if (context.read<UsuarioServiceImpl>().user.isAnonymous) {
+            if (context.read<UsuarioController>().user.isAnonymous) {
               WidgetDialog(context, 'Não', 'Sim').confirm(
                 titulo: 'Atenção',
                 pergunta:
