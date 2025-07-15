@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:catalogo_produto_poc/app/app_widget.dart';
@@ -13,12 +12,12 @@ import 'package:catalogo_produto_poc/app/repositories/carrinho/carrinho_reposito
 import 'package:catalogo_produto_poc/app/services/carrinho/carrinho_service_impl.dart';
 import 'package:catalogo_produto_poc/app/modules/carrinho/cubit/carrinho_controller.dart';
 
-class AppProvider extends StatelessWidget {
-  const AppProvider({super.key});
+class AppBlocProvider extends StatelessWidget {
+  const AppBlocProvider({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return MultiProvider(
+    return MultiBlocProvider(
       providers: [
         //Usuario
         BlocProvider<UsuarioController>(
