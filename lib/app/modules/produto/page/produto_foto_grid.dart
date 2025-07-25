@@ -127,7 +127,7 @@ class _ProdutoFotoGridState extends State<ProdutoFotoGrid> {
                     margin: const EdgeInsets.only(top: 10, left: 7),
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(7),
-                      color: Colors.grey[100],
+                      color: Colors.grey[200],
                     ),
                     alignment: Alignment.center,
                     child: CircleAvatar(

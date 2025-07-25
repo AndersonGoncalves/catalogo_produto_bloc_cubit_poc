@@ -10,6 +10,8 @@ class ProdutoController extends Cubit<ProdutoState> {
     : _produtoService = produtoService,
       super(ProdutoState());
 
+  List<Produto> get produtos => state.produtos;
+
   Future<void> load() async {
     emit(state.copyWith(error: null, success: false, isLoading: true));
     try {

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:catalogo_produto_poc/app/core/constants/rotas.dart';
 import 'package:catalogo_produto_poc/app/core/models/produto.dart';
+import 'package:catalogo_produto_poc/app/core/ui/theme_extensions.dart';
 import 'package:catalogo_produto_poc/app/core/widget/widget_dialog.dart';
 import 'package:catalogo_produto_poc/app/core/ui/format_currency.dart';
 import 'package:catalogo_produto_poc/app/modules/produto/cubit/produto_controller.dart';
@@ -25,7 +26,7 @@ class _ProdutoListItemState extends State<ProdutoListItem> {
       key: Key(widget._produto.id),
       direction: DismissDirection.endToStart,
       background: Container(
-        color: Theme.of(context).colorScheme.error,
+        color: context.tertiaryColor,
         alignment: Alignment.centerRight,
         padding: const EdgeInsets.only(right: 20),
         margin: const EdgeInsets.symmetric(vertical: 2, horizontal: 0),
@@ -44,7 +45,7 @@ class _ProdutoListItemState extends State<ProdutoListItem> {
         return confirmed ?? false;
       },
       child: Card(
-        color: Theme.of(context).canvasColor,
+        color: context.canvasColor,
         elevation: 0,
         margin: const EdgeInsets.symmetric(vertical: 2, horizontal: 0),
         child: ListTile(
@@ -62,7 +63,7 @@ class _ProdutoListItemState extends State<ProdutoListItem> {
                   backgroundColor: Colors.black12,
                   child: Icon(
                     Icons.local_offer_outlined,
-                    color: Colors.black45,
+                    color: Colors.black54,
                     size: 24,
                   ),
                 )

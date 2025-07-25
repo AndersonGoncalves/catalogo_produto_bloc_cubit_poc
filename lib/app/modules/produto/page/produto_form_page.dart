@@ -4,13 +4,14 @@ import 'package:validatorless/validatorless.dart';
 import 'package:catalogo_produto_poc/app/core/ui/messages.dart';
 import 'package:catalogo_produto_poc/app/core/ui/functions.dart';
 import 'package:catalogo_produto_poc/app/core/models/produto.dart';
+import 'package:catalogo_produto_poc/app/core/ui/theme_extensions.dart';
 import 'package:catalogo_produto_poc/app/core/widget/widget_loading_page.dart';
 import 'package:catalogo_produto_poc/app/core/widget/widget_text_form_field.dart';
-import 'package:catalogo_produto_poc/app/modules/produto/cubit/produto_controller.dart';
 import 'package:currency_text_input_formatter/currency_text_input_formatter.dart';
-import 'package:catalogo_produto_poc/app/modules/produto/page/produto_foto_grid.dart';
-import 'package:catalogo_produto_poc/app/modules/produto/page/produto_calculadora_preco_page.dart';
 import 'package:catalogo_produto_poc/app/modules/produto/cubit/produto_state.dart';
+import 'package:catalogo_produto_poc/app/modules/produto/page/produto_foto_grid.dart';
+import 'package:catalogo_produto_poc/app/modules/produto/cubit/produto_controller.dart';
+import 'package:catalogo_produto_poc/app/modules/produto/page/produto_calculadora_preco_page.dart';
 
 class ProdutoFormPage extends StatefulWidget {
   const ProdutoFormPage({super.key});
@@ -170,9 +171,8 @@ class _ProdutoFormPageState extends State<ProdutoFormPage> {
       listener: (context, state) {
         _isLoading = state.isLoading;
         if (state.error != null && state.error!.isNotEmpty) {
-          Messages.of(context).showError(state.error!);
+          Messages.of(context).showError(Text(state.error!));
         }
-        // Se não está carregando e não há erro, fecha a tela após salvar
         if (!state.isLoading &&
             state.error == null &&
             ModalRoute.of(context)?.isCurrent == true) {
@@ -181,12 +181,11 @@ class _ProdutoFormPageState extends State<ProdutoFormPage> {
       },
       builder: (context, state) {
         return Scaffold(
-          backgroundColor: Colors.white,
           body: _isLoading
               ? WidgetLoadingPage(
                   label: 'Salvando...',
-                  labelColor: Theme.of(context).colorScheme.primary,
-                  backgroundColor: Colors.white,
+                  labelColor: context.primaryColor,
+                  backgroundColor: context.canvasColor,
                 )
               : Form(
                   key: _formKey,
@@ -260,8 +259,8 @@ class _ProdutoFormPageState extends State<ProdutoFormPage> {
                                         ),
                                   collapseMode: CollapseMode.parallax,
                                 ),
-                                backgroundColor: Colors.white,
-                                surfaceTintColor: Colors.white,
+                                backgroundColor: context.canvasColor,
+                                surfaceTintColor: context.canvasColor,
                                 foregroundColor: Colors.black,
                                 // Título que aparece quando a imagem colapsa
                                 title: _fotos.isNotEmpty
@@ -521,7 +520,7 @@ class _ProdutoFormPageState extends State<ProdutoFormPage> {
                           padding: const EdgeInsets.only(
                             left: 15,
                             right: 15,
-                            bottom: 10,
+                            bottom: 20,
                           ),
                           child: OutlinedButton(
                             onPressed: () => Navigator.of(context).pop(),
@@ -530,15 +529,13 @@ class _ProdutoFormPageState extends State<ProdutoFormPage> {
                               children: [
                                 Icon(
                                   Icons.arrow_back,
-                                  color: Theme.of(context).colorScheme.primary,
+                                  color: context.tertiaryColor,
                                 ),
                                 const SizedBox(width: 8),
                                 Text(
                                   'Voltar',
                                   style: TextStyle(
-                                    color: Theme.of(
-                                      context,
-                                    ).colorScheme.primary,
+                                    color: context.tertiaryColor,
                                   ),
                                 ),
                               ],

@@ -41,11 +41,13 @@ class _ProdutoGridItemState extends State<ProdutoGridItem> {
             ),
           ),
           trailing: InkWell(
-            child: Icon(Icons.shopping_cart, color: context.secondaryColor),
+            child: Icon(Icons.shopping_cart, color: context.tertiaryColor),
             onTap: () {
               Messages.of(context).infoWithAction(
-                'Produto adicionado no carrinho!',
+                Text('Produto adicionado no carrinho!'),
+                Colors.green,
                 'DESFAZER',
+                Colors.white,
                 () {
                   carrinho.removeSingleItem(widget._produto.id);
                 },
@@ -62,17 +64,32 @@ class _ProdutoGridItemState extends State<ProdutoGridItem> {
           },
           child: Hero(
             tag: widget._produto.id,
-            child: FadeInImage(
-              placeholder: const AssetImage(
-                'assets/images/produto-placeholder.png',
-              ),
-              image:
-                  widget._produto.fotos == null ||
-                      widget._produto.fotos!.isEmpty
-                  ? AssetImage('assets/icon/icon-adaptive.png')
-                  : NetworkImage(widget._produto.fotos![0]),
-              fit: BoxFit.fill,
-            ),
+            child:
+                widget._produto.fotos == null || widget._produto.fotos!.isEmpty
+                ? Container(
+                    color: Colors.grey[200],
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Icon(Icons.image, size: 80, color: Colors.grey[400]),
+                        const SizedBox(height: 8),
+                        Text(
+                          'Sem imagem',
+                          style: TextStyle(
+                            color: Colors.grey[600],
+                            fontSize: 16,
+                          ),
+                        ),
+                      ],
+                    ),
+                  )
+                : FadeInImage(
+                    placeholder: const AssetImage(
+                      'assets/images/produto-placeholder.png',
+                    ),
+                    image: NetworkImage(widget._produto.fotos![0]),
+                    fit: BoxFit.fill,
+                  ),
           ),
         ),
       ),

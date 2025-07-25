@@ -10,34 +10,50 @@ class Messages {
     return Messages._(context);
   }
 
-  void _showSnackBar(String message, Color backgroundColor) {
+  void _showSnackBar(Text message, Color backgroundColor) {
     ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(backgroundColor: backgroundColor, content: Text(message)),
+      SnackBar(backgroundColor: backgroundColor, content: message),
     );
   }
 
   void _showSnackBarWithAction(
-    String message,
-    String action,
-    Function() onPressed,
+    Text message,
     Color backgroundColor,
+    String action,
+    Color actionTextColor,
+    Function() onPressed,
   ) {
     Scaffold.of(context).openDrawer();
     ScaffoldMessenger.of(context).hideCurrentSnackBar();
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
+        content: message,
         backgroundColor: backgroundColor,
-        content: Text(message),
         duration: const Duration(seconds: 3),
-        action: SnackBarAction(label: action, onPressed: onPressed),
+        action: SnackBarAction(
+          label: action,
+          textColor: actionTextColor,
+          onPressed: onPressed,
+        ),
       ),
     );
   }
 
-  void showError(String message) => _showSnackBar(message, Colors.red);
+  void showError(Text message) => _showSnackBar(message, context.errorColor);
 
-  void info(String message) => _showSnackBar(message, context.primaryColor);
+  void info(Text message, Color color) => _showSnackBar(message, color);
 
-  void infoWithAction(String message, String action, Function() onPressed) =>
-      _showSnackBarWithAction(message, action, onPressed, context.primaryColor);
+  void infoWithAction(
+    Text message,
+    Color backgroundColor,
+    String action,
+    Color actionTextColor,
+    Function() onPressed,
+  ) => _showSnackBarWithAction(
+    message,
+    backgroundColor,
+    action,
+    actionTextColor,
+    onPressed,
+  );
 }

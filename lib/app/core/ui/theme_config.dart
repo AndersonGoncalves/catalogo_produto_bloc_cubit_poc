@@ -2,30 +2,40 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class ThemeConfig {
-  static const Color _canvasColor = Color.fromRGBO(240, 240, 240, 1);
-  static const Color _primaryColor = Color.fromRGBO(0, 64, 102, 1);
-  static const Color _secundaryColor = Colors.pink; //fromRGBO(255, 159, 0, 1);
+  static const Color _canvasColor = Color(0xFFF5F5F5);
+  static const Color _primaryColor = Color(0xFF011E38);
+  static const Color _secondaryColor = Color(0xFF264FEC);
+  static const Color _tertiaryColor = Colors.pink;
 
   static final ThemeData _tema = ThemeData();
-
-  ThemeConfig._();
 
   static ThemeData get theme => ThemeData(
     canvasColor: _canvasColor,
     scaffoldBackgroundColor: _canvasColor,
+    colorScheme: _tema.colorScheme.copyWith(
+      primary: _primaryColor,
+      secondary: _secondaryColor,
+      tertiary: _tertiaryColor,
+      surface: _canvasColor,
+      error: Colors.red,
+    ),
 
     textTheme: GoogleFonts.mandaliTextTheme(),
 
-    colorScheme: _tema.colorScheme.copyWith(
-      primary: _primaryColor,
-      secondary: _secundaryColor,
-    ),
-
     iconTheme: const IconThemeData(size: 24),
+
+    appBarTheme: const AppBarTheme(
+      elevation: 0,
+      toolbarHeight: 56,
+      backgroundColor: _primaryColor,
+      surfaceTintColor: _primaryColor,
+      foregroundColor: Colors.white,
+      titleTextStyle: TextStyle(fontSize: 20, color: Colors.white),
+    ),
 
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: ElevatedButton.styleFrom(
-        backgroundColor: _primaryColor,
+        backgroundColor: _secondaryColor,
         foregroundColor: Colors.white,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
         minimumSize: Size(double.infinity, 45),
@@ -38,20 +48,14 @@ class ThemeConfig {
       style: OutlinedButton.styleFrom(
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
         minimumSize: Size(double.infinity, 45),
-        side: BorderSide(color: _primaryColor),
+        side: BorderSide(color: _tertiaryColor),
       ),
     ),
 
     floatingActionButtonTheme: FloatingActionButtonThemeData(
-      backgroundColor: _secundaryColor,
+      backgroundColor: _tertiaryColor,
       foregroundColor: Colors.white,
-    ),
-
-    appBarTheme: const AppBarTheme(
-      titleTextStyle: TextStyle(fontSize: 20, color: Colors.white),
-      backgroundColor: _primaryColor,
-      surfaceTintColor: _primaryColor,
-      foregroundColor: Colors.white,
+      shape: const CircleBorder(),
     ),
   );
 }

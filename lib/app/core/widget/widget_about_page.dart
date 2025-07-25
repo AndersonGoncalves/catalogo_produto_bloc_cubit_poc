@@ -38,14 +38,26 @@ class _WidgetAboutPageState extends State<WidgetAboutPage> {
               elevation: 0,
               toolbarHeight: 56,
               automaticallyImplyLeading: false,
-              leading: IconButton(
-                onPressed: Navigator.of(context).pop,
-                icon: const Icon(Icons.close),
-              ),
               title: Padding(
                 padding: const EdgeInsets.only(bottom: 2),
                 child: Text('Sobre'),
               ),
+              actions: <Widget>[
+                Container(
+                  margin: const EdgeInsets.only(right: 6.0),
+                  child: IconButton(
+                    onPressed: () => Navigator.of(context).pop(context),
+                    icon: ClipOval(
+                      child: Container(
+                        width: 40,
+                        height: 40,
+                        color: Colors.white.withAlpha(20),
+                        child: const Icon(Icons.close, color: Colors.white),
+                      ),
+                    ),
+                  ),
+                ),
+              ],
             )
           : null,
       body: SafeArea(

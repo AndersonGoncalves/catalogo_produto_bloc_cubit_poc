@@ -3,17 +3,20 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:catalogo_produto_poc/app/core/ui/messages.dart';
 import 'package:catalogo_produto_poc/app/core/models/produto.dart';
 import 'package:catalogo_produto_poc/app/core/constants/rotas.dart';
+import 'package:catalogo_produto_poc/app/core/ui/theme_extensions.dart';
+import 'package:catalogo_produto_poc/app/core/widget/widget_pesquisa.dart';
 import 'package:catalogo_produto_poc/app/core/widget/widget_loading_page.dart';
 import 'package:catalogo_produto_poc/app/modules/produto/page/produto_list.dart';
 import 'package:catalogo_produto_poc/app/modules/produto/page/produto_grid.dart';
-import 'package:catalogo_produto_poc/app/modules/produto/cubit/produto_controller.dart';
 import 'package:catalogo_produto_poc/app/modules/produto/cubit/produto_state.dart';
+import 'package:catalogo_produto_poc/app/modules/produto/cubit/produto_controller.dart';
 
 enum ProdutoPageMode { list, grid }
 
 class ProdutoPage extends StatefulWidget {
   final bool _comAppBar;
   final ProdutoPageMode _produtoPageMode;
+
   const ProdutoPage({
     super.key,
     bool comAppBar = true,
@@ -26,6 +29,41 @@ class ProdutoPage extends StatefulWidget {
 }
 
 class _ProdutoPageState extends State<ProdutoPage> {
+  List<Produto> _produtosFiltrados = [];
+  String _searchTerm = '';
+
+  List<Produto> _produtos(List<Produto> produtos) {
+    final produtosList = List<Produto>.from(produtos);
+    produtosList.sort(
+      (a, b) => a.nome.toUpperCase().compareTo(b.nome.toUpperCase()),
+    );
+    return produtosList;
+  }
+
+  void _onSearch(String value) {
+    setState(() {
+      _searchTerm = value;
+      final produtoController = context.read<ProdutoController>();
+      if (value.isEmpty) {
+        _produtosFiltrados = _produtos(produtoController.produtos);
+      } else {
+        _produtosFiltrados = _produtos(produtoController.produtos)
+            .where(
+              (element) =>
+                  element.nome.toLowerCase().contains(value.toLowerCase()),
+            )
+            .toList();
+      }
+    });
+  }
+
+  List<Produto> _getProdutosParaExibir(List<Produto> produtos) {
+    if (_searchTerm.isEmpty) {
+      return _produtos(produtos);
+    }
+    return _produtosFiltrados;
+  }
+
   @override
   void initState() {
     super.initState();
@@ -34,20 +72,18 @@ class _ProdutoPageState extends State<ProdutoPage> {
     });
   }
 
-  List<Produto> _produtos(ProdutoState state) {
-    final produtos = List<Produto>.from(state.produtos);
-    produtos.sort(
-      (a, b) => a.nome.toUpperCase().compareTo(b.nome.toUpperCase()),
-    );
-    return produtos;
-  }
-
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<ProdutoController, ProdutoState>(
       listener: (context, state) {
         if (state.error != null && state.error!.isNotEmpty) {
-          Messages.of(context).showError(state.error!);
+          Messages.of(context).showError(Text(state.error!));
+        }
+
+        if (state.produtos.isNotEmpty) {
+          if (_searchTerm.isEmpty) {
+            _produtosFiltrados = _produtos(state.produtos);
+          }
         }
       },
       builder: (context, state) {
@@ -55,16 +91,7 @@ class _ProdutoPageState extends State<ProdutoPage> {
           backgroundColor: Theme.of(context).canvasColor,
           appBar: widget._comAppBar
               ? AppBar(
-                  backgroundColor: Theme.of(context).colorScheme.primary,
-                  surfaceTintColor: Theme.of(context).colorScheme.primary,
-                  foregroundColor: Colors.white,
-                  elevation: 0,
-                  toolbarHeight: 56,
                   automaticallyImplyLeading: false,
-                  leading: IconButton(
-                    onPressed: Navigator.of(context).pop,
-                    icon: const Icon(Icons.arrow_back_ios, size: 20),
-                  ),
                   title: const Padding(
                     padding: EdgeInsets.only(bottom: 2),
                     child: Text(
@@ -73,11 +100,19 @@ class _ProdutoPageState extends State<ProdutoPage> {
                     ),
                   ),
                   actions: <Widget>[
-                    IconButton(
-                      icon: const Icon(Icons.add),
-                      onPressed: () {
-                        Navigator.of(context).pushNamed(Rotas.produtoForm);
-                      },
+                    Container(
+                      margin: const EdgeInsets.only(right: 6.0),
+                      child: IconButton(
+                        onPressed: () => Navigator.of(context).pop(context),
+                        icon: ClipOval(
+                          child: Container(
+                            width: 40,
+                            height: 40,
+                            color: Colors.white.withAlpha(20),
+                            child: const Icon(Icons.close, color: Colors.white),
+                          ),
+                        ),
+                      ),
                     ),
                   ],
                 )
@@ -89,9 +124,35 @@ class _ProdutoPageState extends State<ProdutoPage> {
                     labelColor: Theme.of(context).colorScheme.primary,
                     backgroundColor: Theme.of(context).canvasColor,
                   )
-                : widget._produtoPageMode == ProdutoPageMode.list
-                ? ProdutoList(produtos: _produtos(state))
-                : ProdutoGrid(produtos: _produtos(state)),
+                : Column(
+                    children: [
+                      Container(
+                        height: 65,
+                        width: double.infinity,
+                        color: context.primaryColor,
+                        child: Padding(
+                          padding: const EdgeInsets.all(10),
+                          child: WidgetPesquisa(
+                            fillColor: Colors.white,
+                            onSearch: (value) => _onSearch(value),
+                          ),
+                        ),
+                      ),
+                      Expanded(
+                        child: widget._produtoPageMode == ProdutoPageMode.list
+                            ? ProdutoList(
+                                produtos: _getProdutosParaExibir(
+                                  state.produtos,
+                                ),
+                              )
+                            : ProdutoGrid(
+                                produtos: _getProdutosParaExibir(
+                                  state.produtos,
+                                ),
+                              ),
+                      ),
+                    ],
+                  ),
           ),
           floatingActionButton: widget._produtoPageMode == ProdutoPageMode.list
               ? FloatingActionButton(

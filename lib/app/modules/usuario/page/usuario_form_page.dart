@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_signin_button/flutter_signin_button.dart';
 import 'package:catalogo_produto_poc/app/core/ui/messages.dart';
+import 'package:flutter_signin_button/flutter_signin_button.dart';
+import 'package:catalogo_produto_poc/app/core/ui/theme_extensions.dart';
 import 'package:catalogo_produto_poc/app/core/widget/widget_loading_page.dart';
 import 'package:catalogo_produto_poc/app/core/widget/widget_text_form_field.dart';
 import 'package:catalogo_produto_poc/app/core/widget/widget_text_button.dart';
@@ -111,7 +112,7 @@ class UsuariohFormPageState extends State<UsuarioFormPage>
         if (state.success) {
           Navigator.of(context).pop();
         } else if (state.error != null && state.error!.isNotEmpty) {
-          Messages.of(context).showError(state.error!);
+          Messages.of(context).showError(Text(state.error!));
         }
       },
       builder: (context, state) {
@@ -389,7 +390,10 @@ class UsuariohFormPageState extends State<UsuarioFormPage>
                                                                 .text,
                                                           );
                                                       Messages.of(context).info(
-                                                        'Recuperação de senha enviada para email informado',
+                                                        Text(
+                                                          'Recuperação de senha enviada para email informado',
+                                                        ),
+                                                        context.primaryColor,
                                                       );
                                                     },
                                                   )

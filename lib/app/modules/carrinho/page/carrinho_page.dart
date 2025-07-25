@@ -13,6 +13,35 @@ class CarrinhoPage extends StatelessWidget {
     final items = carrinhoController.items.values.toList();
 
     return Scaffold(
+      appBar: AppBar(
+        automaticallyImplyLeading: false,
+        backgroundColor: context.canvasColor,
+        surfaceTintColor: context.canvasColor,
+        foregroundColor: context.primaryColor,
+        title: Padding(
+          padding: EdgeInsets.only(bottom: 2),
+          child: Text(
+            'Carrinho',
+            style: TextStyle(color: context.primaryColor),
+          ),
+        ),
+        actions: <Widget>[
+          Container(
+            margin: const EdgeInsets.only(right: 6.0),
+            child: IconButton(
+              onPressed: () => Navigator.of(context).pop(context),
+              icon: ClipOval(
+                child: Container(
+                  width: 40,
+                  height: 40,
+                  color: context.primaryColor.withAlpha(20),
+                  child: Icon(Icons.close, color: context.primaryColor),
+                ),
+              ),
+            ),
+          ),
+        ],
+      ),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -54,31 +83,36 @@ class CarrinhoPage extends StatelessWidget {
                   ),
                 ),
 
-          Card(
-            color: Colors.white,
-            elevation: 0,
-            margin: const EdgeInsets.symmetric(horizontal: 15, vertical: 25),
-            child: Padding(
-              padding: const EdgeInsets.all(10),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  const Text('Total:', style: TextStyle(fontSize: 20)),
-                  const SizedBox(width: 10),
-                  Chip(
-                    backgroundColor: context.secondaryColor,
-                    label: Text(
-                      'R\$${carrinhoController.valorTotal.toStringAsFixed(2)}',
-                      style: const TextStyle(color: Colors.white),
+          carrinhoController.items.isEmpty
+              ? Container()
+              : Card(
+                  color: Colors.white,
+                  elevation: 0,
+                  margin: const EdgeInsets.symmetric(
+                    horizontal: 15,
+                    vertical: 25,
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.all(10),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        const Text('Total:', style: TextStyle(fontSize: 20)),
+                        const SizedBox(width: 10),
+                        Chip(
+                          backgroundColor: context.secondaryColor,
+                          label: Text(
+                            'R\$${carrinhoController.valorTotal.toStringAsFixed(2)}',
+                            style: const TextStyle(color: Colors.white),
+                          ),
+                        ),
+                        const Spacer(),
+
+                        CartButton(cart: carrinhoController),
+                      ],
                     ),
                   ),
-                  const Spacer(),
-
-                  CartButton(cart: carrinhoController),
-                ],
-              ),
-            ),
-          ),
+                ),
         ],
       ),
     );
@@ -108,6 +142,7 @@ class _CartButtonState extends State<CartButton> {
                     setState(() => _isLoading = true);
                     //TODO: Chamar a page do pedido
                     widget.cart.clear();
+                    Navigator.of(context).pop();
                     setState(() => _isLoading = false);
                   },
             child: Text(

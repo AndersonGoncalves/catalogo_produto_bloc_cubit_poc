@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
+import 'package:catalogo_produto_poc/app/core/models/produto.dart';
 import 'package:catalogo_produto_poc/app/core/constants/rotas.dart';
 import 'package:catalogo_produto_poc/app/core/ui/theme_config.dart';
 import 'package:catalogo_produto_poc/app/core/widget/widget_error_page.dart';
@@ -38,7 +39,10 @@ class _AppWidgetState extends State<AppWidget> {
         Rotas.produtoGrid: (_) =>
             const ProdutoPage(produtoPageMode: ProdutoPageMode.grid),
         Rotas.produtoForm: (_) => const ProdutoFormPage(),
-        Rotas.produtoDetail: (_) => const ProdutoDetailPage(),
+        Rotas.produtoDetail: (context) {
+          final produto = ModalRoute.of(context)!.settings.arguments as Produto;
+          return ProdutoDetailPage(produto: produto);
+        },
       },
       onUnknownRoute: (RouteSettings settings) {
         return CupertinoPageRoute(
