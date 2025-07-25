@@ -5,8 +5,10 @@ import 'package:catalogo_produto_poc/app/core/models/produto.dart';
 import 'package:catalogo_produto_poc/app/core/constants/rotas.dart';
 import 'package:catalogo_produto_poc/app/core/ui/format_currency.dart';
 import 'package:catalogo_produto_poc/app/core/ui/theme_extensions.dart';
+import 'package:catalogo_produto_poc/app/modules/produto/cubit/produto_state.dart';
 import 'package:catalogo_produto_poc/app/modules/carrinho/page/carrinho_badgee.dart';
 import 'package:catalogo_produto_poc/app/modules/carrinho/cubit/carrinho_state.dart';
+import 'package:catalogo_produto_poc/app/modules/produto/cubit/produto_controller.dart';
 import 'package:catalogo_produto_poc/app/modules/carrinho/cubit/carrinho_controller.dart';
 
 class ProdutoDetailPage extends StatefulWidget {
@@ -244,6 +246,30 @@ class _ProdutoDetailPageState extends State<ProdutoDetailPage> {
               ),
             ),
             actions: [
+              BlocBuilder<ProdutoController, ProdutoState>(
+                builder: (context, state) {
+                  final produto = state.produtos.firstWhere(
+                    (p) => p.id == widget.produto.id,
+                    orElse: () => widget.produto,
+                  );
+
+                  return IconButton(
+                    onPressed: () {
+                      context.read<ProdutoController>().toggleFavorito(
+                        produto.id,
+                        !produto.isFavorito,
+                      );
+                    },
+                    icon: Icon(
+                      produto.isFavorito
+                          ? Icons.favorite
+                          : Icons.favorite_border,
+                      color: produto.isFavorito ? context.tertiaryColor : null,
+                    ),
+                  );
+                },
+              ),
+
               BlocBuilder<CarrinhoController, CarrinhoState>(
                 builder: (context, state) {
                   if (state.error != null && state.error!.isNotEmpty) {

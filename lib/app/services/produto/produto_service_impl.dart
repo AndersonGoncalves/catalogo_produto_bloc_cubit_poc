@@ -12,6 +12,13 @@ class ProdutoServiceImpl implements ProdutoService {
   List<Produto> get produtos => _produtoRepository.produtos;
 
   @override
+  List<Produto> get produtosFavoritos => _produtoRepository.produtosFavoritos;
+
+  @override
+  Future<void> toggleFavorito(String produtoId, bool isFavorito) =>
+      _produtoRepository.toggleFavorito(produtoId, isFavorito);
+
+  @override
   void add(Produto produto) => _produtoRepository.add(produto);
 
   @override

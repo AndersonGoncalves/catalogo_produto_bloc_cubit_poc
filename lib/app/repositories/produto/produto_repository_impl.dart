@@ -17,6 +17,37 @@ class ProdutoRepositoryImpl implements ProdutoRepository {
   List<Produto> get produtos => [..._produtos];
 
   @override
+  List<Produto> get produtosFavoritos {
+    return _produtos.where((produto) => produto.isFavorito).toList();
+  }
+
+  @override
+  Future<void> toggleFavorito(String produtoId, bool isFavorito) async {
+    try {
+      final index = _produtos.indexWhere((produto) => produto.id == produtoId);
+      if (index != -1) {
+        _produtos[index] = _produtos[index].copyWith(isFavorito: isFavorito);
+
+        final response = await http.patch(
+          Uri.parse('${Url.firebase().produto}/$produtoId.json?auth=$_token'),
+          body: jsonEncode({'isFavorito': isFavorito}),
+          headers: {'Content-Type': 'application/json'},
+        );
+
+        if (response.statusCode >= 400) {
+          _produtos[index] = _produtos[index].copyWith(isFavorito: !isFavorito);
+          throw HttpException(
+            msg: 'Falha ao atualizar favorito',
+            statusCode: response.statusCode,
+          );
+        }
+      }
+    } catch (e) {
+      throw Exception('Erro ao atualizar favorito: $e');
+    }
+  }
+
+  @override
   void add(Produto produto) {
     _produtos.add(produto);
   }

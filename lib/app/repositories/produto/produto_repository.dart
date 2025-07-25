@@ -2,6 +2,8 @@ import 'package:catalogo_produto_poc/app/core/models/produto.dart';
 
 abstract interface class ProdutoRepository {
   List<Produto> get produtos;
+  List<Produto> get produtosFavoritos;
+  Future<void> toggleFavorito(String produtoId, bool isFavorito);
   void add(Produto model);
   Future<void> get();
   Future<void> post(Produto model);

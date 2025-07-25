@@ -9,6 +9,7 @@ import 'package:catalogo_produto_poc/app/modules/carrinho/page/carrinho_badgee.d
 import 'package:catalogo_produto_poc/app/modules/carrinho/cubit/carrinho_state.dart';
 import 'package:catalogo_produto_poc/app/modules/usuario/cubit/usuario_controller.dart';
 import 'package:catalogo_produto_poc/app/modules/carrinho/cubit/carrinho_controller.dart';
+import 'package:catalogo_produto_poc/app/modules/produto/page/produto_favoritos_page.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -36,7 +37,7 @@ class _HomePageState extends State<HomePage> {
           produtoPageMode: ProdutoPageMode.grid,
         ),
       },
-      {'title': '', 'page': const SizedBox()},
+      {'title': '', 'page': const ProdutoFavoritosPage()},
       {'title': '', 'page': const SizedBox()},
       {'title': '', 'page': const WidgetAboutPage(comAppBar: false)},
     ];

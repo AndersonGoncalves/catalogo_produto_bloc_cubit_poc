@@ -12,6 +12,22 @@ class ProdutoController extends Cubit<ProdutoState> {
 
   List<Produto> get produtos => state.produtos;
 
+  List<Produto> get produtosFavoritos => _produtoService.produtosFavoritos;
+
+  Future<void> toggleFavorito(String produtoId, bool isFavorito) async {
+    try {
+      await _produtoService.toggleFavorito(produtoId, isFavorito);
+      emit(state.copyWith(produtos: _produtoService.produtos, success: true));
+    } catch (e) {
+      emit(
+        state.copyWith(
+          error: 'Erro ao atualizar favorito: ${e.toString()}',
+          success: false,
+        ),
+      );
+    }
+  }
+
   Future<void> load() async {
     emit(state.copyWith(error: null, success: false, isLoading: true));
     try {

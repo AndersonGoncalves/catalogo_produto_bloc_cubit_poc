@@ -12,6 +12,7 @@ class Produto {
   final String? codigoBarras;
   final int? quantidadeEmEstoque;
   final List<String>? fotos;
+  final bool isFavorito;
 
   Produto({
     required this.id,
@@ -24,6 +25,7 @@ class Produto {
     this.codigoBarras,
     this.quantidadeEmEstoque = 0,
     this.fotos = const [],
+    this.isFavorito = false,
   });
 
   Produto copyWith({
@@ -37,6 +39,7 @@ class Produto {
     ValueGetter<String?>? codigoBarras,
     int? quantidadeEmEstoque,
     ValueGetter<List<String>?>? fotos,
+    bool? isFavorito,
   }) {
     return Produto(
       id: id ?? this.id,
@@ -49,6 +52,7 @@ class Produto {
       codigoBarras: codigoBarras != null ? codigoBarras() : this.codigoBarras,
       quantidadeEmEstoque: quantidadeEmEstoque ?? this.quantidadeEmEstoque,
       fotos: fotos != null ? fotos() : this.fotos,
+      isFavorito: isFavorito ?? this.isFavorito,
     );
   }
 
@@ -66,6 +70,7 @@ class Produto {
       'fotos': fotos != null
           ? fotos!.map((item) => {'url': item}).toList()
           : '',
+      'isFavorito': isFavorito,
     };
   }
 
@@ -78,6 +83,7 @@ class Produto {
       nome: map['nome'].toString(),
       descricao: map['descricao']?.toString(),
       marca: map['marca']?.toString(),
+      isFavorito: map['isFavorito'] ?? false,
       precoDeVenda: load
           ? map['precoDeVenda']?.toDouble() ?? 0.0
           : double.tryParse(
@@ -138,7 +144,8 @@ class Produto {
         other.precoDeVenda == precoDeVenda &&
         other.codigoBarras == codigoBarras &&
         other.quantidadeEmEstoque == quantidadeEmEstoque &&
-        listEquals(other.fotos, fotos);
+        listEquals(other.fotos, fotos) &&
+        other.isFavorito == isFavorito;
   }
 
   @override
@@ -152,6 +159,7 @@ class Produto {
         precoDeVenda.hashCode ^
         codigoBarras.hashCode ^
         quantidadeEmEstoque.hashCode ^
-        fotos.hashCode;
+        fotos.hashCode ^
+        isFavorito.hashCode;
   }
 }

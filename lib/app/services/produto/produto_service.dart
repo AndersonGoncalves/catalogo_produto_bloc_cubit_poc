@@ -3,6 +3,8 @@ import 'package:catalogo_produto_poc/app/core/models/produto.dart';
 abstract interface class ProdutoService {
   List<Produto> get produtos;
   void add(Produto produto);
+  Future<void> toggleFavorito(String produtoId, bool isFavorito);
+  List<Produto> get produtosFavoritos;
   Future<void> get();
   Future<void> post(Produto model);
   Future<void> patch(Produto model);

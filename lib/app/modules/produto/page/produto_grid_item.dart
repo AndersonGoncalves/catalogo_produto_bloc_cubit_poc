@@ -27,6 +27,9 @@ class _ProdutoGridItemState extends State<ProdutoGridItem> {
       borderRadius: BorderRadius.circular(5),
       child: GridTile(
         footer: GridTileBar(
+          leading: widget._produto.isFavorito
+              ? Icon(Icons.favorite, color: context.tertiaryColor, size: 20)
+              : null,
           backgroundColor: Colors.white,
           title: Text(
             widget._produto.nome,
