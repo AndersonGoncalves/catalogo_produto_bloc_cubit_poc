@@ -101,7 +101,7 @@ class _ProdutoPageState extends State<ProdutoPage> {
                   ),
                   actions: <Widget>[
                     Container(
-                      margin: const EdgeInsets.only(right: 6.0),
+                      margin: const EdgeInsets.only(right: 1.0),
                       child: IconButton(
                         onPressed: () => Navigator.of(context).pop(context),
                         icon: ClipOval(

@@ -93,6 +93,7 @@ class CarrinhoPage extends StatelessWidget {
                           left: 15,
                           right: 15,
                           bottom: 25,
+                          top: 5,
                         ),
                         child: Padding(
                           padding: const EdgeInsets.all(10),
