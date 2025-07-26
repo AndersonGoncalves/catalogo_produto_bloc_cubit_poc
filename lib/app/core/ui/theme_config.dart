@@ -48,7 +48,7 @@ class ThemeConfig {
       style: OutlinedButton.styleFrom(
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
         minimumSize: Size(double.infinity, 45),
-        side: BorderSide(color: _tertiaryColor),
+        side: BorderSide(color: _secondaryColor),
       ),
     ),
 

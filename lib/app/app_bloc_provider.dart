@@ -11,6 +11,9 @@ import 'package:catalogo_produto_poc/app/repositories/usuario/usuario_repository
 import 'package:catalogo_produto_poc/app/repositories/carrinho/carrinho_repository_impl.dart';
 import 'package:catalogo_produto_poc/app/services/carrinho/carrinho_service_impl.dart';
 import 'package:catalogo_produto_poc/app/modules/carrinho/cubit/carrinho_controller.dart';
+import 'package:catalogo_produto_poc/app/modules/pedido/cubit/pedido_controller.dart';
+import 'package:catalogo_produto_poc/app/repositories/pedido/pedido_repository_impl.dart';
+import 'package:catalogo_produto_poc/app/services/pedido/pedido_service_impl.dart';
 
 class AppBlocProvider extends StatelessWidget {
   const AppBlocProvider({super.key});
@@ -56,6 +59,22 @@ class AppBlocProvider extends StatelessWidget {
             return CarrinhoController(
               carrinhoService: CarrinhoServiceImpl(
                 carrinhoRepository: carrinhoRepository,
+              ),
+            );
+          },
+        ),
+
+        BlocProvider<PedidoController>(
+          create: (context) {
+            final usuarioRepository = UsuarioRepositoryImpl(
+              firebaseAuth: FirebaseAuth.instance,
+            );
+            return PedidoController(
+              pedidoService: PedidoServiceImpl(
+                pedidoRepository: PedidoRepositoryImpl(
+                  token: usuarioRepository.user.refreshToken.toString(),
+                  userId: usuarioRepository.user.uid.toString(),
+                ),
               ),
             );
           },

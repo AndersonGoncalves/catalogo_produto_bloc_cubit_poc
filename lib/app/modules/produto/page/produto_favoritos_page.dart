@@ -29,8 +29,8 @@ class _ProdutoFavoritosPageState extends State<ProdutoFavoritosPage> {
         if (state.isLoading) {
           return WidgetLoadingPage(
             label: 'Carregando favoritos...',
-            labelColor: Theme.of(context).colorScheme.primary,
-            backgroundColor: Theme.of(context).canvasColor,
+            labelColor: context.primaryColor,
+            backgroundColor: context.canvasColor,
           );
         }
 
@@ -45,13 +45,15 @@ class _ProdutoFavoritosPageState extends State<ProdutoFavoritosPage> {
                 : Container(
                     width: double.infinity,
                     padding: const EdgeInsets.all(16),
+                    color: context.primaryColor.withOpacity(0.1),
                     child: Text(
-                      'Seus Produtos Favoritos estão aqui!',
+                      '❤️ Meus Favoritos',
                       style: TextStyle(
                         fontSize: 18,
                         fontWeight: FontWeight.bold,
                         color: context.primaryColor,
                       ),
+                      // textAlign: TextAlign.center,
                     ),
                   ),
             Expanded(

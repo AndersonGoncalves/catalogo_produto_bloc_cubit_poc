@@ -109,9 +109,13 @@ class UsuariohFormPageState extends State<UsuarioFormPage>
   Widget build(BuildContext context) {
     return BlocConsumer<UsuarioController, UsuarioState>(
       listener: (context, state) {
-        if (state.success) {
-          Navigator.of(context).pop();
-        } else if (state.error != null && state.error!.isNotEmpty) {
+        if (state.success && mounted) {
+          WidgetsBinding.instance.addPostFrameCallback((_) {
+            if (mounted) {
+              Navigator.of(context).pop();
+            }
+          });
+        } else if (state.error != null && state.error!.isNotEmpty && mounted) {
           Messages.of(context).showError(Text(state.error!));
         }
       },

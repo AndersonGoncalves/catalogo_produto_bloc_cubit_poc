@@ -399,14 +399,14 @@ class _ProdutoDetailPageState extends State<ProdutoDetailPage> {
                           onPressed: () => Navigator.of(context).pop(),
                           icon: Icon(
                             Icons.arrow_back,
-                            color: context.tertiaryColor,
+                            color: context.secondaryColor,
                           ),
                           label: Text(
                             'Voltar',
-                            style: TextStyle(color: context.tertiaryColor),
+                            style: TextStyle(color: context.secondaryColor),
                           ),
                           style: OutlinedButton.styleFrom(
-                            side: BorderSide(color: context.tertiaryColor),
+                            side: BorderSide(color: context.secondaryColor),
                           ),
                         ),
                       ),

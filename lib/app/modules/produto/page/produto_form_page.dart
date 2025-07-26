@@ -399,7 +399,7 @@ class _ProdutoFormPageState extends State<ProdutoFormPage> {
                                     padding: const EdgeInsets.only(
                                       left: 20,
                                       right: 20,
-                                      bottom: 15,
+                                      bottom: 1,
                                     ),
                                     child: Column(
                                       children: <Widget>[
@@ -498,50 +498,92 @@ class _ProdutoFormPageState extends State<ProdutoFormPage> {
                                     ),
                                   ),
                                   ProdutoFotoGrid(fotoList: _fotos),
+
+                                  Padding(
+                                    padding: const EdgeInsets.only(
+                                      left: 15,
+                                      right: 15,
+                                      bottom: 10,
+                                      top: 20,
+                                    ),
+                                    child: ElevatedButton(
+                                      onPressed: _save,
+                                      child: Text('Salvar'),
+                                    ),
+                                  ),
+
+                                  Padding(
+                                    padding: const EdgeInsets.only(
+                                      left: 15,
+                                      right: 15,
+                                      bottom: 20,
+                                    ),
+                                    child: OutlinedButton(
+                                      onPressed: () =>
+                                          Navigator.of(context).pop(),
+                                      child: Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        children: [
+                                          Icon(
+                                            Icons.arrow_back,
+                                            color: context.secondaryColor,
+                                          ),
+                                          const SizedBox(width: 8),
+                                          Text(
+                                            'Voltar',
+                                            style: TextStyle(
+                                              color: context.secondaryColor,
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ),
                                 ]),
                               ),
                             ],
                           ),
                         ),
-                        Padding(
-                          padding: const EdgeInsets.only(
-                            left: 15,
-                            right: 15,
-                            bottom: 10,
-                            top: 10,
-                          ),
-                          child: ElevatedButton(
-                            onPressed: _save,
-                            child: Text('Salvar'),
-                          ),
-                        ),
+                        // Padding(
+                        //   padding: const EdgeInsets.only(
+                        //     left: 15,
+                        //     right: 15,
+                        //     bottom: 10,
+                        //     top: 10,
+                        //   ),
+                        //   child: ElevatedButton(
+                        //     onPressed: _save,
+                        //     child: Text('Salvar'),
+                        //   ),
+                        // ),
 
-                        Padding(
-                          padding: const EdgeInsets.only(
-                            left: 15,
-                            right: 15,
-                            bottom: 20,
-                          ),
-                          child: OutlinedButton(
-                            onPressed: () => Navigator.of(context).pop(),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Icon(
-                                  Icons.arrow_back,
-                                  color: context.tertiaryColor,
-                                ),
-                                const SizedBox(width: 8),
-                                Text(
-                                  'Voltar',
-                                  style: TextStyle(
-                                    color: context.tertiaryColor,
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
+                        // Padding(
+                        //   padding: const EdgeInsets.only(
+                        //     left: 15,
+                        //     right: 15,
+                        //     bottom: 20,
+                        //   ),
+                        //   child: OutlinedButton(
+                        //     onPressed: () => Navigator.of(context).pop(),
+                        //     child: Row(
+                        //       mainAxisAlignment: MainAxisAlignment.center,
+                        //       children: [
+                        //         Icon(
+                        //           Icons.arrow_back,
+                        //           color: context.tertiaryColor,
+                        //         ),
+                        //         const SizedBox(width: 8),
+                        //         Text(
+                        //           'Voltar',
+                        //           style: TextStyle(
+                        //             color: context.tertiaryColor,
+                        //           ),
+                        //         ),
+                        //       ],
+                        //     ),
+                        //   ),
+                        // ),
                       ],
                     ),
                   ),

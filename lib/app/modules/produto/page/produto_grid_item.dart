@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:catalogo_produto_poc/app/core/ui/messages.dart';
 import 'package:catalogo_produto_poc/app/core/models/produto.dart';
 import 'package:catalogo_produto_poc/app/core/ui/theme_extensions.dart';
 import 'package:catalogo_produto_poc/app/core/constants/rotas.dart';
@@ -46,15 +45,6 @@ class _ProdutoGridItemState extends State<ProdutoGridItem> {
           trailing: InkWell(
             child: Icon(Icons.shopping_cart, color: context.tertiaryColor),
             onTap: () {
-              Messages.of(context).infoWithAction(
-                Text('Produto adicionado no carrinho!'),
-                Colors.green,
-                'DESFAZER',
-                Colors.white,
-                () {
-                  carrinho.removeSingleItem(widget._produto.id);
-                },
-              );
               carrinho.add(widget._produto);
             },
           ),

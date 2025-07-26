@@ -4,9 +4,11 @@ import 'package:catalogo_produto_poc/app/core/constants/rotas.dart';
 import 'package:catalogo_produto_poc/app/core/ui/theme_extensions.dart';
 import 'package:catalogo_produto_poc/app/core/widget/widget_drawer.dart';
 import 'package:catalogo_produto_poc/app/core/widget/widget_about_page.dart';
+import 'package:catalogo_produto_poc/app/modules/pedido/page/pedido_page.dart';
 import 'package:catalogo_produto_poc/app/modules/produto/page/produto_page.dart';
 import 'package:catalogo_produto_poc/app/modules/carrinho/page/carrinho_badgee.dart';
 import 'package:catalogo_produto_poc/app/modules/carrinho/cubit/carrinho_state.dart';
+import 'package:catalogo_produto_poc/app/modules/pedido/cubit/pedido_controller.dart';
 import 'package:catalogo_produto_poc/app/modules/usuario/cubit/usuario_controller.dart';
 import 'package:catalogo_produto_poc/app/modules/carrinho/cubit/carrinho_controller.dart';
 import 'package:catalogo_produto_poc/app/modules/produto/page/produto_favoritos_page.dart';
@@ -25,6 +27,12 @@ class _HomePageState extends State<HomePage> {
     setState(() {
       _selectedPageIndex = index;
     });
+
+    if (index == 2) {
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        context.read<PedidoController>().load();
+      });
+    }
   }
 
   @override
@@ -38,7 +46,7 @@ class _HomePageState extends State<HomePage> {
         ),
       },
       {'title': '', 'page': const ProdutoFavoritosPage()},
-      {'title': '', 'page': const SizedBox()},
+      {'title': '', 'page': const PedidoPage()},
       {'title': '', 'page': const WidgetAboutPage(comAppBar: false)},
     ];
 

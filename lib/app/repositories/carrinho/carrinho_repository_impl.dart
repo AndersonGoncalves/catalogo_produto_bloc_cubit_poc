@@ -31,6 +31,7 @@ class CarrinhoRepositoryImpl implements CarrinhoRepository {
       _items.update(
         produto.id,
         (existingItem) => Carrinho(
+          produto: existingItem.produto,
           id: existingItem.id,
           produtoId: existingItem.produtoId,
           nome: existingItem.nome,
@@ -42,6 +43,7 @@ class CarrinhoRepositoryImpl implements CarrinhoRepository {
       _items.putIfAbsent(
         produto.id,
         () => Carrinho(
+          produto: produto,
           id: Random().nextDouble().toString(),
           produtoId: produto.id,
           nome: produto.nome,
@@ -74,6 +76,7 @@ class CarrinhoRepositoryImpl implements CarrinhoRepository {
           nome: existingItem.nome,
           quantidade: existingItem.quantidade - 1,
           preco: existingItem.preco,
+          produto: existingItem.produto,
         ),
       );
     }
