@@ -4,13 +4,14 @@ import 'package:flutter/services.dart';
 import 'package:catalogo_produto_poc/app/core/models/produto.dart';
 import 'package:catalogo_produto_poc/app/core/constants/rotas.dart';
 import 'package:catalogo_produto_poc/app/core/ui/theme_config.dart';
+import 'package:catalogo_produto_poc/app/core/l10n/app_localizations.dart';
+import 'package:catalogo_produto_poc/app/modules/home/roteador_page.dart';
 import 'package:catalogo_produto_poc/app/core/widget/widget_error_page.dart';
 import 'package:catalogo_produto_poc/app/core/widget/widget_about_page.dart';
 import 'package:catalogo_produto_poc/app/core/widget/widget_perfil_page.dart';
-import 'package:catalogo_produto_poc/app/modules/home/roteador_page.dart';
+import 'package:catalogo_produto_poc/app/modules/produto/page/produto_page.dart';
 import 'package:catalogo_produto_poc/app/modules/carrinho/page/carrinho_page.dart';
 import 'package:catalogo_produto_poc/app/modules/produto/page/produto_form_page.dart';
-import 'package:catalogo_produto_poc/app/modules/produto/page/produto_page.dart';
 import 'package:catalogo_produto_poc/app/modules/produto/page/produto_detail_page.dart';
 
 class AppWidget extends StatefulWidget {
@@ -25,7 +26,23 @@ class _AppWidgetState extends State<AppWidget> {
   Widget build(BuildContext context) {
     SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
     return MaterialApp(
-      title: 'Catálogo de Produtos',
+      localizationsDelegates: AppLocalizations.localizationsDelegates,
+      supportedLocales: AppLocalizations.supportedLocales,
+      // localizationsDelegates: AppLocalizations.localizationsDelegates,
+      // supportedLocales: AppLocalizations.supportedLocales,
+      //ou
+      // localizationsDelegates: [
+      //   AppLocalizations.delegate,
+      //   GlobalMaterialLocalizations.delegate,
+      //   GlobalWidgetsLocalizations.delegate,
+      //   GlobalCupertinoLocalizations.delegate,
+      // ],
+      // supportedLocales: [
+      //   Locale('en'), // English
+      //   Locale('es'), // Spanish
+      //   Locale('pt'), // Portugues
+      // ],
+      // title: AppLocalizations.of(context)!.catalogoDeProdutos,
       theme: ThemeConfig.theme,
       debugShowCheckedModeBanner: false,
       initialRoute: Rotas.home,

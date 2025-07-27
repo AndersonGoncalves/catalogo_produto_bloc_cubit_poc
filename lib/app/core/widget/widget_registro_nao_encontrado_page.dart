@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:catalogo_produto_poc/app/core/ui/localization_extension.dart';
 
 class WidgetRegistroNaoEncontradoPage extends StatelessWidget {
   const WidgetRegistroNaoEncontradoPage({super.key});
@@ -14,7 +15,7 @@ class WidgetRegistroNaoEncontradoPage extends StatelessWidget {
           const SizedBox(width: 12),
           Flexible(
             child: Text(
-              'Registro não encontrado',
+              context.localizations.registroNaoEncontrado,
               style: TextStyle(color: Colors.grey, fontSize: 16),
               overflow: TextOverflow.ellipsis,
               maxLines: 2,

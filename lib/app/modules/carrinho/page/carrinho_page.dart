@@ -4,6 +4,7 @@ import 'package:catalogo_produto_poc/app/core/ui/messages.dart';
 import 'package:catalogo_produto_poc/app/core/models/carrinho.dart';
 import 'package:catalogo_produto_poc/app/core/ui/format_currency.dart';
 import 'package:catalogo_produto_poc/app/core/ui/theme_extensions.dart';
+import 'package:catalogo_produto_poc/app/core/ui/localization_extension.dart';
 import 'package:catalogo_produto_poc/app/modules/carrinho/page/carrinho_item.dart';
 import 'package:catalogo_produto_poc/app/modules/pedido/cubit/pedido_controller.dart';
 import 'package:catalogo_produto_poc/app/modules/carrinho/cubit/carrinho_controller.dart';
@@ -26,7 +27,9 @@ class CarrinhoPage extends StatelessWidget {
         title: Padding(
           padding: EdgeInsets.only(bottom: 2),
           child: Text(
-            carrinhoController.items.isEmpty ? '' : 'Carrinho de Compras',
+            carrinhoController.items.isEmpty
+                ? ''
+                : context.localizations.carrinhoDeCompras,
             style: TextStyle(color: context.primaryColor),
           ),
         ),
@@ -65,7 +68,7 @@ class CarrinhoPage extends StatelessWidget {
                           ),
                           const SizedBox(height: 16),
                           Text(
-                            'Seu carrinho está vazio',
+                            context.localizations.seuCarrinhoEstaVazio,
                             style: TextStyle(
                               fontSize: 18,
                               color: Colors.grey[600],
@@ -100,8 +103,8 @@ class CarrinhoPage extends StatelessWidget {
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              const Text(
-                                'Total:',
+                              Text(
+                                context.localizations.total,
                                 style: TextStyle(fontSize: 20),
                               ),
                               const SizedBox(width: 10),
@@ -159,19 +162,25 @@ class _CartButtonState extends State<CartButton> {
           .toList();
 
       final pedidoController = context.read<PedidoController>();
-      await pedidoController.criarPedido(carrinhoItems);
+      await pedidoController.criarPedido(
+        carrinhoItems,
+        context.localizations.confirmado,
+      );
 
       widget.cart.clear();
 
       if (mounted) {
-        Messages.of(
-          context,
-        ).info(const Text('Pedido criado com sucesso!'), Colors.green);
+        Messages.of(context).info(
+          Text(context.localizations.pedidoCriadoComSucesso),
+          Colors.green,
+        );
         Navigator.of(context).pop();
       }
     } catch (e) {
       if (mounted) {
-        Messages.of(context).showError(Text('Erro ao criar pedido: $e'));
+        Messages.of(
+          context,
+        ).showError(Text('${context.localizations.erroAoCriarPedido}: $e'));
       }
     } finally {
       if (mounted) {
@@ -187,7 +196,7 @@ class _CartButtonState extends State<CartButton> {
         : TextButton(
             onPressed: widget.cart.quantidadeItem == 0 ? null : _criarPedido,
             child: Text(
-              'CONFIRMAR',
+              context.localizations.confirmar,
               style: TextStyle(color: context.primaryColor),
             ),
           );

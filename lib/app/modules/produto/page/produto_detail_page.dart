@@ -5,6 +5,7 @@ import 'package:catalogo_produto_poc/app/core/models/produto.dart';
 import 'package:catalogo_produto_poc/app/core/constants/rotas.dart';
 import 'package:catalogo_produto_poc/app/core/ui/format_currency.dart';
 import 'package:catalogo_produto_poc/app/core/ui/theme_extensions.dart';
+import 'package:catalogo_produto_poc/app/core/ui/localization_extension.dart';
 import 'package:catalogo_produto_poc/app/modules/produto/cubit/produto_state.dart';
 import 'package:catalogo_produto_poc/app/modules/carrinho/page/carrinho_badgee.dart';
 import 'package:catalogo_produto_poc/app/modules/carrinho/cubit/carrinho_state.dart';
@@ -33,7 +34,7 @@ class _ProdutoDetailPageState extends State<ProdutoDetailPage> {
           Icon(Icons.image, size: 80, color: Colors.grey[400]),
           const SizedBox(height: 8),
           Text(
-            'Sem imagem',
+            context.localizations.semImagem,
             style: TextStyle(color: Colors.grey[600], fontSize: 16),
           ),
         ],
@@ -387,7 +388,7 @@ class _ProdutoDetailPageState extends State<ProdutoDetailPage> {
                             );
                           },
                           icon: const Icon(Icons.shopping_cart),
-                          label: const Text('Comprar'),
+                          label: Text(context.localizations.comprar),
                         ),
                       ),
 
@@ -402,7 +403,7 @@ class _ProdutoDetailPageState extends State<ProdutoDetailPage> {
                             color: context.secondaryColor,
                           ),
                           label: Text(
-                            'Voltar',
+                            context.localizations.voltar,
                             style: TextStyle(color: context.secondaryColor),
                           ),
                           style: OutlinedButton.styleFrom(

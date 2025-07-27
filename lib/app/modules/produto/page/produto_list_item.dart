@@ -5,6 +5,7 @@ import 'package:catalogo_produto_poc/app/core/models/produto.dart';
 import 'package:catalogo_produto_poc/app/core/ui/theme_extensions.dart';
 import 'package:catalogo_produto_poc/app/core/widget/widget_dialog.dart';
 import 'package:catalogo_produto_poc/app/core/ui/format_currency.dart';
+import 'package:catalogo_produto_poc/app/core/ui/localization_extension.dart';
 import 'package:catalogo_produto_poc/app/modules/produto/cubit/produto_controller.dart';
 
 class ProdutoListItem extends StatefulWidget {
@@ -33,15 +34,20 @@ class _ProdutoListItemState extends State<ProdutoListItem> {
         child: const Icon(Icons.delete, color: Colors.white, size: 30),
       ),
       confirmDismiss: (_) async {
-        bool? confirmed = await WidgetDialog(context, 'Não', 'Sim').confirm(
-          titulo: 'Atenção',
-          pergunta: 'Deseja excluir o produto?',
-          onConfirm: () async {
-            return await context.read<ProdutoController>().remove(
-              widget._produto,
+        bool? confirmed =
+            await WidgetDialog(
+              context,
+              context.localizations.nao,
+              context.localizations.sim,
+            ).confirm(
+              titulo: context.localizations.atencao,
+              pergunta: context.localizations.desejaExcluirORegistro,
+              onConfirm: () async {
+                return await context.read<ProdutoController>().remove(
+                  widget._produto,
+                );
+              },
             );
-          },
-        );
         return confirmed ?? false;
       },
       child: Card(
@@ -98,7 +104,7 @@ class _ProdutoListItemState extends State<ProdutoListItem> {
                 ),
               ),
               Text(
-                '${widget._produto.quantidadeEmEstoque} Und',
+                '${widget._produto.quantidadeEmEstoque} ${context.localizations.und}',
                 style: TextStyle(
                   fontSize: 14,
                   color: Colors.black54,

@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:catalogo_produto_poc/app/core/models/pedido.dart';
 import 'package:catalogo_produto_poc/app/core/ui/format_currency.dart';
 import 'package:catalogo_produto_poc/app/core/ui/theme_extensions.dart';
+import 'package:catalogo_produto_poc/app/core/ui/localization_extension.dart';
 import 'package:catalogo_produto_poc/app/core/widget/widget_loading_page.dart';
 import 'package:catalogo_produto_poc/app/modules/pedido/cubit/pedido_state.dart';
 import 'package:catalogo_produto_poc/app/modules/pedido/cubit/pedido_controller.dart';
@@ -17,17 +18,16 @@ class PedidoPage extends StatefulWidget {
 
 class _PedidoPageState extends State<PedidoPage> {
   Color _getStatusColor(String status) {
-    switch (status) {
-      case 'Confirmado':
-        return Colors.green;
-      case 'Pendente':
-        return Colors.orange;
-      case 'Cancelado':
-        return Colors.red;
-      case 'Entregue':
-        return Colors.blue;
-      default:
-        return Colors.grey;
+    if (status == context.localizations.confirmado) {
+      return Colors.green;
+    } else if (status == context.localizations.pendente) {
+      return Colors.orange;
+    } else if (status == context.localizations.cancelado) {
+      return Colors.red;
+    } else if (status == context.localizations.entregue) {
+      return Colors.blue;
+    } else {
+      return Colors.grey;
     }
   }
 
@@ -46,7 +46,7 @@ class _PedidoPageState extends State<PedidoPage> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  'Pedido #${pedido.id.substring(0, 8)}',
+                  '${context.localizations.pedido} #${pedido.id.substring(0, 8)}',
                   style: const TextStyle(
                     fontSize: 16,
                     fontWeight: FontWeight.bold,
@@ -74,12 +74,12 @@ class _PedidoPageState extends State<PedidoPage> {
             ),
             const SizedBox(height: 8),
             Text(
-              'Data: ${DateFormat('dd/MM/yyyy HH:mm').format(pedido.data)}',
+              '${context.localizations.data}: ${DateFormat('dd/MM/yyyy HH:mm').format(pedido.data)}',
               style: TextStyle(color: Colors.grey[600]),
             ),
             const SizedBox(height: 8),
             Text(
-              'Total: ${formatCurrency.format(pedido.total)}',
+              '${context.localizations.total}: ${formatCurrency.format(pedido.total)}',
               style: const TextStyle(
                 fontSize: 16,
                 fontWeight: FontWeight.bold,
@@ -87,7 +87,10 @@ class _PedidoPageState extends State<PedidoPage> {
               ),
             ),
             const SizedBox(height: 12),
-            const Text('Itens:', style: TextStyle(fontWeight: FontWeight.bold)),
+            Text(
+              '${context.localizations.itens}:',
+              style: TextStyle(fontWeight: FontWeight.bold),
+            ),
             const SizedBox(height: 4),
             ...pedido.itens.map(
               (item) => Padding(
@@ -146,7 +149,7 @@ class _PedidoPageState extends State<PedidoPage> {
                     padding: const EdgeInsets.all(16),
                     color: context.primaryColor.withOpacity(0.1),
                     child: Text(
-                      '📦 Meus Pedidos',
+                      '📦 ${context.localizations.meusPedidos}',
                       style: TextStyle(
                         fontSize: 18,
                         fontWeight: FontWeight.bold,
@@ -158,8 +161,8 @@ class _PedidoPageState extends State<PedidoPage> {
               child: state.isLoading || state.isCreatingOrder
                   ? WidgetLoadingPage(
                       label: state.isCreatingOrder
-                          ? 'Criando pedido...'
-                          : 'Carregando pedidos...',
+                          ? context.localizations.criandoPedido
+                          : context.localizations.carregandoPedidos,
                       labelColor: context.primaryColor,
                       backgroundColor: context.canvasColor,
                     )
@@ -175,7 +178,7 @@ class _PedidoPageState extends State<PedidoPage> {
                           ),
                           const SizedBox(height: 16),
                           Text(
-                            'Nenhum pedido encontrado',
+                            context.localizations.nenhumPedidoEncontrado,
                             style: TextStyle(
                               fontSize: 18,
                               color: Colors.grey[600],
@@ -183,7 +186,7 @@ class _PedidoPageState extends State<PedidoPage> {
                           ),
                           const SizedBox(height: 8),
                           Text(
-                            'Seus pedidos irão aparecer aqui',
+                            context.localizations.seusPedidosIraoAparecerAqui,
                             style: TextStyle(
                               fontSize: 14,
                               color: Colors.grey[500],

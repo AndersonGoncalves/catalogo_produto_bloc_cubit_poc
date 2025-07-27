@@ -10,7 +10,7 @@ class WidgetPesquisa extends StatefulWidget {
   final Function()? suffixIconOnPressed;
 
   const WidgetPesquisa({
-    this.hintText = 'Digite sua pesquisa',
+    this.hintText,
     this.fillColor,
     this.radius = 20,
     this.suffixIcon,

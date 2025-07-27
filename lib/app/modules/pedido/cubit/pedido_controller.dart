@@ -35,13 +35,13 @@ class PedidoController extends Cubit<PedidoState> {
     }
   }
 
-  Future<void> criarPedido(List<Carrinho> itens) async {
+  Future<void> criarPedido(List<Carrinho> itens, String status) async {
     emit(
       state.copyWith(isCreatingOrder: true, error: null, orderCreated: false),
     );
 
     try {
-      await _pedidoService.criarPedido(itens);
+      await _pedidoService.criarPedido(itens, status);
       await _pedidoService.get();
 
       emit(

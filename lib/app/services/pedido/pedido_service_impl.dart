@@ -16,7 +16,7 @@ class PedidoServiceImpl implements PedidoService {
   Future<void> get() => _pedidoRepository.get();
 
   @override
-  Future<void> criarPedido(List<Carrinho> itens) async {
+  Future<void> criarPedido(List<Carrinho> itens, String status) async {
     final itensPedido = itens
         .map(
           (item) => ItemPedido(
@@ -35,7 +35,7 @@ class PedidoServiceImpl implements PedidoService {
       data: DateTime.now(),
       itens: itensPedido,
       total: total,
-      status: 'Confirmado',
+      status: status,
     );
 
     await _pedidoRepository.post(pedido);

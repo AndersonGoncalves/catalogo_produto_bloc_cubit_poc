@@ -4,6 +4,6 @@ import 'package:catalogo_produto_poc/app/core/models/pedido.dart';
 abstract class PedidoService {
   List<Pedido> get pedidos;
   Future<void> get();
-  Future<void> criarPedido(List<Carrinho> itens);
+  Future<void> criarPedido(List<Carrinho> itens, String status);
   Future<void> atualizarStatus(String pedidoId, String novoStatus);
 }

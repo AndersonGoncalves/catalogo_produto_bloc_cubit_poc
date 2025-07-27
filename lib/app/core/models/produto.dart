@@ -101,18 +101,9 @@ class Produto {
                 )! /
                 100,
       codigoBarras: map['codigoBarras']?.toString(),
-      // quantidadeEmEstoque: load
-      //     ? map['quantidadeEmEstoque']?.toDouble() ?? 0.0
-      //     : double.tryParse(
-      //             map['quantidadeEmEstoque']
-      //                 .replaceAll(RegExp(r'[^0-9]'), '')
-      //                 .toString(),
-      //           )! /
-      //           100,
       quantidadeEmEstoque: map['quantidadeEmEstoque'] == null
           ? 0
           : int.parse(map['quantidadeEmEstoque'].toString()),
-
       fotos: map['fotos'] != null
           ? load
                 ? (map['fotos'] as List<dynamic>).map((item) {

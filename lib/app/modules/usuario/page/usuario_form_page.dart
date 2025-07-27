@@ -6,6 +6,7 @@ import 'package:catalogo_produto_poc/app/core/ui/theme_extensions.dart';
 import 'package:catalogo_produto_poc/app/core/widget/widget_loading_page.dart';
 import 'package:catalogo_produto_poc/app/core/widget/widget_text_form_field.dart';
 import 'package:catalogo_produto_poc/app/core/widget/widget_text_button.dart';
+import 'package:catalogo_produto_poc/app/core/ui/localization_extension.dart';
 import 'package:catalogo_produto_poc/app/modules/usuario/cubit/usuario_controller.dart';
 import 'package:catalogo_produto_poc/app/modules/usuario/cubit/usuario_state.dart';
 
@@ -123,7 +124,7 @@ class UsuariohFormPageState extends State<UsuarioFormPage>
         return Scaffold(
           body: state.isLoading
               ? WidgetLoadingPage(
-                  label: 'Carregando...',
+                  label: context.localizations.carregando,
                   labelColor: Colors.white,
                 )
               : SafeArea(
@@ -164,7 +165,7 @@ class UsuariohFormPageState extends State<UsuarioFormPage>
                                             ),
                                             FittedBox(
                                               child: Text(
-                                                'PoC',
+                                                context.localizations.poc,
                                                 style: TextStyle(
                                                   fontSize: 30,
                                                   fontWeight: FontWeight.bold,
@@ -183,8 +184,12 @@ class UsuariohFormPageState extends State<UsuarioFormPage>
                                               ),
                                               child: Text(
                                                 _isLogin
-                                                    ? 'Informe um email e uma senha de 6 dígitos e tenha acesso ao App'
-                                                    : 'Informe um email e uma senha de 6 dígitos e registre-se no App',
+                                                    ? context
+                                                          .localizations
+                                                          .informeUmEmailEUmaSenhaDe6DigitosETenhaAcessoAoApp
+                                                    : context
+                                                          .localizations
+                                                          .informeUmEmailEUmaSenhaDe6DigitosEregistreSeNoApp,
                                                 textAlign: TextAlign.center,
                                                 style: const TextStyle(
                                                   fontSize: 16,
@@ -194,7 +199,9 @@ class UsuariohFormPageState extends State<UsuarioFormPage>
                                             _isLogin
                                                 ? const SizedBox()
                                                 : WidgetTextFormField(
-                                                    labelText: 'Nome',
+                                                    labelText: context
+                                                        .localizations
+                                                        .nome,
                                                     keyboardType: TextInputType
                                                         .emailAddress,
                                                     textInputAction:
@@ -211,7 +218,8 @@ class UsuariohFormPageState extends State<UsuarioFormPage>
                                                   ),
                                             WidgetTextFormField(
                                               key: const Key('email_key'),
-                                              labelText: 'Email',
+                                              labelText:
+                                                  context.localizations.email,
                                               keyboardType:
                                                   TextInputType.emailAddress,
                                               textInputAction:
@@ -226,7 +234,9 @@ class UsuariohFormPageState extends State<UsuarioFormPage>
                                                 final email = value ?? '';
                                                 if (email.isEmpty ||
                                                     !email.contains('@')) {
-                                                  return 'Informe um email válido';
+                                                  return context
+                                                      .localizations
+                                                      .informeEmailValido;
                                                 }
                                                 return null;
                                               },
@@ -235,7 +245,8 @@ class UsuariohFormPageState extends State<UsuarioFormPage>
                                                       value ?? '',
                                             ),
                                             WidgetTextFormField(
-                                              labelText: 'Senha',
+                                              labelText:
+                                                  context.localizations.senha,
                                               prefixIcon: const Icon(
                                                 Icons.lock_outline,
                                               ),
@@ -250,7 +261,9 @@ class UsuariohFormPageState extends State<UsuarioFormPage>
                                                 final password = value ?? '';
                                                 if (password.isEmpty ||
                                                     password.length < 5) {
-                                                  return 'Informe uma senha válida';
+                                                  return context
+                                                      .localizations
+                                                      .informeUmaSenhaValida;
                                                 }
                                                 return null;
                                               },
@@ -261,8 +274,9 @@ class UsuariohFormPageState extends State<UsuarioFormPage>
                                             _isLogin
                                                 ? const SizedBox()
                                                 : WidgetTextFormField(
-                                                    labelText:
-                                                        'Confirmar Senha',
+                                                    labelText: context
+                                                        .localizations
+                                                        .confirmarSenha,
                                                     prefixIcon: const Icon(
                                                       Icons.lock_outline,
                                                     ),
@@ -281,7 +295,9 @@ class UsuariohFormPageState extends State<UsuarioFormPage>
                                                             if (password !=
                                                                 _passwordController
                                                                     .text) {
-                                                              return 'Senhas informadas não conferem';
+                                                              return context
+                                                                  .localizations
+                                                                  .senhasInformadasNaoConferem;
                                                             }
                                                             return null;
                                                           },
@@ -291,7 +307,9 @@ class UsuariohFormPageState extends State<UsuarioFormPage>
                                                 : Column(
                                                     children: [
                                                       Text(
-                                                        'Ao usar o app, você concorda com nossos',
+                                                        context
+                                                            .localizations
+                                                            .aoUsarOAppVoceConcordaComNossosTermos,
                                                         style: const TextStyle(
                                                           fontSize: 9,
                                                         ),
@@ -299,7 +317,9 @@ class UsuariohFormPageState extends State<UsuarioFormPage>
                                                       InkWell(
                                                         onTap: () {},
                                                         child: Text(
-                                                          'Termos de Uso & Política de Privacidade',
+                                                          context
+                                                              .localizations
+                                                              .termosDeUsoEPoliticaDePrivacidade,
                                                           style: TextStyle(
                                                             fontSize: 11,
                                                             fontWeight:
@@ -343,8 +363,12 @@ class UsuariohFormPageState extends State<UsuarioFormPage>
                                                 ),
                                                 child: Text(
                                                   _authMode == AuthMode.login
-                                                      ? 'ENTRAR'
-                                                      : 'REGISTRAR',
+                                                      ? context
+                                                            .localizations
+                                                            .entrar
+                                                      : context
+                                                            .localizations
+                                                            .registrar,
                                                 ),
                                               ),
                                             ),
@@ -354,8 +378,9 @@ class UsuariohFormPageState extends State<UsuarioFormPage>
                                                       Expanded(
                                                         child: SignInButton(
                                                           Buttons.Google,
-                                                          text:
-                                                              'Login com Google',
+                                                          text: context
+                                                              .localizations
+                                                              .loginComGoogle,
                                                           elevation: 1,
                                                           padding:
                                                               const EdgeInsets.all(
@@ -383,7 +408,9 @@ class UsuariohFormPageState extends State<UsuarioFormPage>
                                                 : SizedBox.shrink(),
                                             _isLogin
                                                 ? WidgetTextButton(
-                                                    'Esqueceu a senha?',
+                                                    context
+                                                        .localizations
+                                                        .esqueceuASenha,
                                                     onPressed: () async {
                                                       await context
                                                           .read<
@@ -395,7 +422,9 @@ class UsuariohFormPageState extends State<UsuarioFormPage>
                                                           );
                                                       Messages.of(context).info(
                                                         Text(
-                                                          'Recuperação de senha enviada para email informado',
+                                                          context
+                                                              .localizations
+                                                              .recuperacaoDeSenhaEnviadaParaEmailInformado,
                                                         ),
                                                         context.primaryColor,
                                                       );
@@ -407,12 +436,18 @@ class UsuariohFormPageState extends State<UsuarioFormPage>
                                                 ? const SizedBox()
                                                 : WidgetTextButton(
                                                     _isLogin
-                                                        ? 'DESEJA REGISTRAR?'
-                                                        : 'JÁ POSSUI CONTA?',
+                                                        ? context
+                                                              .localizations
+                                                              .desejaRegistrar
+                                                        : context
+                                                              .localizations
+                                                              .jaPossuiConta,
                                                     onPressed: _switchAuthMode,
                                                   ),
                                             WidgetTextButton(
-                                              'NÃO QUERO ME REGISTRAR!',
+                                              context
+                                                  .localizations
+                                                  .naoQueroMeRegistrar,
                                               foregroundColor: Colors.red,
                                               onPressed: _loginAnonimo,
                                             ),

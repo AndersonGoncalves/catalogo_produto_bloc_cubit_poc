@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:provider/provider.dart';
 import 'package:catalogo_produto_poc/app/core/constants/rotas.dart';
 import 'package:catalogo_produto_poc/app/core/widget/widget_dialog.dart';
+import 'package:catalogo_produto_poc/app/core/ui/localization_extension.dart';
 import 'package:catalogo_produto_poc/app/modules/usuario/page/usuario_form_page.dart';
 import 'package:catalogo_produto_poc/app/modules/usuario/cubit/usuario_controller.dart';
 
@@ -60,24 +61,24 @@ class _WidgetDrawerState extends State<WidgetDrawer> {
               child: widget.userImage,
             ),
             accountName: Text(
-              'Olá, ${widget.userName == 'null' ? '' : widget.userName}',
+              '${context.localizations.ola}, ${widget.userName == 'null' ? '' : widget.userName}',
               style: const TextStyle(color: Colors.white),
             ),
             accountEmail: Text(
-              'Seja bem vindo(a)!',
+              context.localizations.sejaBemVindo,
               style: const TextStyle(color: Colors.white),
             ),
           ),
-          _createItem(Icons.home, 'Home', () {
+          _createItem(Icons.home, context.localizations.home, () {
             Navigator.of(context).pop();
             Navigator.of(context).pushReplacementNamed(Rotas.home);
           }),
           const Divider(),
-          _createItem(Icons.local_offer, 'Produtos', () {
+          _createItem(Icons.local_offer, context.localizations.produtos, () {
             Navigator.of(context).popAndPushNamed(Rotas.produtoList);
           }),
           const Divider(),
-          _createItem(Icons.account_circle, 'Perfil', () {
+          _createItem(Icons.account_circle, context.localizations.perfil, () {
             if (context.read<UsuarioController>().user.isAnonymous) {
               Navigator.of(context).pop();
               Navigator.of(context).push(
@@ -94,16 +95,21 @@ class _WidgetDrawerState extends State<WidgetDrawer> {
               Navigator.of(context).popAndPushNamed(Rotas.perfil);
             }
           }),
-          _createItem(Icons.error_outline, 'Sobre', () {
+          _createItem(Icons.error_outline, context.localizations.sobre, () {
             Navigator.of(context).popAndPushNamed(Rotas.about);
           }),
           const Divider(),
-          _createItem(Icons.exit_to_app, 'Sair', () {
+          _createItem(Icons.exit_to_app, context.localizations.sair, () {
             if (context.read<UsuarioController>().user.isAnonymous) {
-              WidgetDialog(context, 'Não', 'Sim').confirm(
-                titulo: 'Atenção',
-                pergunta:
-                    'Deseja sair da Aplicaçao? Irá perder todos os seus dados.',
+              WidgetDialog(
+                context,
+                context.localizations.nao,
+                context.localizations.sim,
+              ).confirm(
+                titulo: context.localizations.atencao,
+                pergunta: context
+                    .localizations
+                    .desejaSairDaAplicacaoIraPerderTodosOsDados,
                 onConfirm: () {
                   _sair(context);
                 },

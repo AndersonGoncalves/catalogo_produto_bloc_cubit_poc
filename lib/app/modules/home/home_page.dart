@@ -4,6 +4,7 @@ import 'package:catalogo_produto_poc/app/core/constants/rotas.dart';
 import 'package:catalogo_produto_poc/app/core/ui/theme_extensions.dart';
 import 'package:catalogo_produto_poc/app/core/widget/widget_drawer.dart';
 import 'package:catalogo_produto_poc/app/core/widget/widget_about_page.dart';
+import 'package:catalogo_produto_poc/app/core/ui/localization_extension.dart';
 import 'package:catalogo_produto_poc/app/modules/pedido/page/pedido_page.dart';
 import 'package:catalogo_produto_poc/app/modules/produto/page/produto_page.dart';
 import 'package:catalogo_produto_poc/app/modules/carrinho/page/carrinho_badgee.dart';
@@ -55,8 +56,8 @@ class _HomePageState extends State<HomePage> {
         title: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Text('PoC', style: TextStyle(fontSize: 12)),
-            const Text('Anderson Gonçalves', style: TextStyle(fontSize: 16)),
+            Text(context.localizations.poc, style: TextStyle(fontSize: 12)),
+            Text('Anderson Gonçalves', style: TextStyle(fontSize: 16)),
           ],
         ),
         actions: <Widget>[

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:catalogo_produto_poc/app/core/widget/widget_dialog.dart';
+import 'package:catalogo_produto_poc/app/core/ui/localization_extension.dart';
 import 'package:catalogo_produto_poc/app/core/widget/widget_text_form_field.dart';
 
 class ProdutoFotoPage extends StatefulWidget {
@@ -104,17 +105,24 @@ class _ProdutoFotoPageState extends State<ProdutoFotoPage> {
           (_fotoUrlController.text.isEmpty)) {
         WidgetDialog(
           context,
-          'Não',
-          'Sim',
-        ).ok(titulo: 'Atenção', frase: 'Url inválida');
+          context.localizations.nao,
+          context.localizations.sim,
+        ).ok(
+          titulo: context.localizations.atencao,
+          frase: context.localizations.urlInvalida,
+        );
         return;
       }
       if (!widget.fotoList.contains(_fotoUrlController.text)) {
         if (widget.fotoList.length == widget.quantidadeMaximaFotos) {
-          WidgetDialog(context, 'Não', 'Sim').ok(
-            titulo: 'Atenção',
+          WidgetDialog(
+            context,
+            context.localizations.nao,
+            context.localizations.sim,
+          ).ok(
+            titulo: context.localizations.atencao,
             frase:
-                'Quantidade máxima permitida ${widget.quantidadeMaximaFotos}.',
+                '${context.localizations.quantidadeMaximaPermitida} ${widget.quantidadeMaximaFotos}.',
           );
           return;
         }
@@ -147,7 +155,9 @@ class _ProdutoFotoPageState extends State<ProdutoFotoPage> {
         title: Padding(
           padding: const EdgeInsets.only(bottom: 2),
           child: Text(
-            widget.quantidadeMaximaFotos == 1 ? 'Foto' : 'Fotos',
+            widget.quantidadeMaximaFotos == 1
+                ? context.localizations.foto
+                : context.localizations.fotos,
             style: const TextStyle(color: Colors.black),
           ),
         ),
@@ -175,7 +185,7 @@ class _ProdutoFotoPageState extends State<ProdutoFotoPage> {
                             Expanded(
                               child: SizedBox(
                                 child: WidgetTextFormField(
-                                  labelText: 'Url da Foto',
+                                  labelText: context.localizations.urlDaFoto,
                                   suffixIcon: const Icon(Icons.check),
                                   suffixIconOnPressed: () => submit(),
                                   keyboardType: TextInputType.url,

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:catalogo_produto_poc/app/core/ui/localization_extension.dart';
 import 'package:catalogo_produto_poc/app/core/widget/widget_text_form_field.dart';
 import 'package:catalogo_produto_poc/app/modules/usuario/cubit/usuario_controller.dart';
 
@@ -44,7 +45,7 @@ class _WidgetPerfilPageState extends State<WidgetPerfilPage> {
                         ),
                         child: FittedBox(
                           child: Text(
-                            'Perfil',
+                            context.localizations.perfil,
                             style: TextStyle(
                               fontSize: 40,
                               fontWeight: FontWeight.bold,
@@ -65,7 +66,7 @@ class _WidgetPerfilPageState extends State<WidgetPerfilPage> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: <Widget>[
                               Text(
-                                'Nome',
+                                context.localizations.nome,
                                 textAlign: TextAlign.left,
                                 style: const TextStyle(fontSize: 16),
                               ),
@@ -86,8 +87,8 @@ class _WidgetPerfilPageState extends State<WidgetPerfilPage> {
                                     '',
                                 border: true,
                               ),
-                              const Text(
-                                'Email',
+                              Text(
+                                context.localizations.email,
                                 textAlign: TextAlign.left,
                                 style: TextStyle(fontSize: 16),
                               ),
@@ -119,7 +120,7 @@ class _WidgetPerfilPageState extends State<WidgetPerfilPage> {
                                   tapTargetSize:
                                       MaterialTapTargetSize.shrinkWrap,
                                 ),
-                                child: Text('Ok'),
+                                child: Text(context.localizations.ok),
                               ),
                             ],
                           ),

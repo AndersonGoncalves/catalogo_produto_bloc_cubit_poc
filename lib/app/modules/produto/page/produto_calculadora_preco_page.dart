@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:catalogo_produto_poc/app/core/ui/functions.dart';
 import 'package:catalogo_produto_poc/app/core/ui/format_currency.dart';
+import 'package:catalogo_produto_poc/app/core/ui/localization_extension.dart';
 import 'package:catalogo_produto_poc/app/core/widget/widget_text_form_field.dart';
 
 class ProdutoCalculadoraPrecoPage extends StatefulWidget {
@@ -115,10 +116,10 @@ class ProdutotCalculadoraPrecoPageState
           onPressed: Navigator.of(context).pop,
           icon: const Icon(Icons.close, size: 20),
         ),
-        title: const Padding(
+        title: Padding(
           padding: EdgeInsets.only(bottom: 2),
           child: Text(
-            'Calculadora de preço',
+            context.localizations.calculadoraDePreco,
             style: TextStyle(color: Colors.black),
           ),
         ),
@@ -158,7 +159,8 @@ class ProdutotCalculadoraPrecoPageState
                                       Expanded(
                                         child: SizedBox(
                                           child: WidgetTextFormField(
-                                            labelText: 'Custo',
+                                            labelText:
+                                                context.localizations.custo,
                                             border: true,
                                             textAlign: TextAlign.center,
                                             keyboardType: TextInputType.number,
@@ -172,7 +174,8 @@ class ProdutotCalculadoraPrecoPageState
                                       Expanded(
                                         child: SizedBox(
                                           child: WidgetTextFormField(
-                                            labelText: 'Markup',
+                                            labelText:
+                                                context.localizations.markup,
                                             border: true,
                                             textAlign: TextAlign.center,
                                             keyboardType: TextInputType.number,
@@ -212,9 +215,9 @@ class ProdutotCalculadoraPrecoPageState
                                   child: Column(
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: <Widget>[
-                                      const FittedBox(
+                                      FittedBox(
                                         child: Text(
-                                          'Lucro',
+                                          context.localizations.lucro,
                                           textAlign: TextAlign.center,
                                           style: TextStyle(
                                             fontSize: 12,
@@ -252,9 +255,9 @@ class ProdutotCalculadoraPrecoPageState
                                       mainAxisAlignment:
                                           MainAxisAlignment.center,
                                       children: <Widget>[
-                                        const FittedBox(
+                                        FittedBox(
                                           child: Text(
-                                            'Venda',
+                                            context.localizations.venda,
                                             textAlign: TextAlign.center,
                                             style: TextStyle(
                                               color: Colors.black,
@@ -288,9 +291,9 @@ class ProdutotCalculadoraPrecoPageState
                                   child: Column(
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: <Widget>[
-                                      const FittedBox(
+                                      FittedBox(
                                         child: Text(
-                                          'Margem',
+                                          context.localizations.margem,
                                           textAlign: TextAlign.center,
                                           style: TextStyle(
                                             fontSize: 12,
@@ -332,7 +335,7 @@ class ProdutotCalculadoraPrecoPageState
                     elevation: 0,
                     tapTargetSize: MaterialTapTargetSize.shrinkWrap,
                   ),
-                  child: Text('Confirmar'),
+                  child: Text(context.localizations.confirmar),
                 ),
               ),
             ],

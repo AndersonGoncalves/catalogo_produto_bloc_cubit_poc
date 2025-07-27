@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:catalogo_produto_poc/app/core/widget/widget_drawer.dart';
+import 'package:catalogo_produto_poc/app/core/ui/localization_extension.dart';
 import 'package:catalogo_produto_poc/app/modules/usuario/cubit/usuario_controller.dart';
 
 class WidgetErrorPage extends StatelessWidget {
@@ -20,7 +21,7 @@ class WidgetErrorPage extends StatelessWidget {
         title: Padding(
           padding: const EdgeInsets.only(bottom: 2),
           child: Text(
-            'Error',
+            context.localizations.error,
             style: TextStyle(color: Theme.of(context).colorScheme.primary),
           ),
         ),
@@ -29,7 +30,9 @@ class WidgetErrorPage extends StatelessWidget {
         userEmail: context.read<UsuarioController>().user.email,
       ),
       body: SafeArea(
-        child: Center(child: Text('Ocorreu um erro na aplicação')),
+        child: Center(
+          child: Text(context.localizations.ocorreuUmErroNaAplicacao),
+        ),
       ),
     );
   }

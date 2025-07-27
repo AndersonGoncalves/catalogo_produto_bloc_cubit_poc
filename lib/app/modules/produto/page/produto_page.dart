@@ -5,7 +5,9 @@ import 'package:catalogo_produto_poc/app/core/models/produto.dart';
 import 'package:catalogo_produto_poc/app/core/constants/rotas.dart';
 import 'package:catalogo_produto_poc/app/core/ui/theme_extensions.dart';
 import 'package:catalogo_produto_poc/app/core/widget/widget_pesquisa.dart';
+import 'package:catalogo_produto_poc/app/core/l10n/app_localizations.dart';
 import 'package:catalogo_produto_poc/app/core/widget/widget_loading_page.dart';
+import 'package:catalogo_produto_poc/app/core/ui/localization_extension.dart';
 import 'package:catalogo_produto_poc/app/modules/produto/page/produto_list.dart';
 import 'package:catalogo_produto_poc/app/modules/produto/page/produto_grid.dart';
 import 'package:catalogo_produto_poc/app/modules/produto/cubit/produto_state.dart';
@@ -92,11 +94,11 @@ class _ProdutoPageState extends State<ProdutoPage> {
           appBar: widget._comAppBar
               ? AppBar(
                   automaticallyImplyLeading: false,
-                  title: const Padding(
-                    padding: EdgeInsets.only(bottom: 2),
+                  title: Padding(
+                    padding: const EdgeInsets.only(bottom: 2),
                     child: Text(
-                      'Produtos',
-                      style: TextStyle(color: Colors.white),
+                      AppLocalizations.of(context)!.produtos,
+                      style: const TextStyle(color: Colors.white),
                     ),
                   ),
                   actions: <Widget>[
@@ -120,7 +122,7 @@ class _ProdutoPageState extends State<ProdutoPage> {
           body: SafeArea(
             child: state.isLoading
                 ? WidgetLoadingPage(
-                    label: 'Carregando...',
+                    label: context.localizations.carregando,
                     labelColor: Theme.of(context).colorScheme.primary,
                     backgroundColor: Theme.of(context).canvasColor,
                   )
@@ -133,6 +135,7 @@ class _ProdutoPageState extends State<ProdutoPage> {
                         child: Padding(
                           padding: const EdgeInsets.all(10),
                           child: WidgetPesquisa(
+                            hintText: context.localizations.digiteSuaPesquisa,
                             fillColor: Colors.white,
                             onSearch: (value) => _onSearch(value),
                           ),

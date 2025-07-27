@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:catalogo_produto_poc/app/core/models/carrinho.dart';
+import 'package:catalogo_produto_poc/app/core/ui/localization_extension.dart';
 import 'package:catalogo_produto_poc/app/modules/carrinho/cubit/carrinho_controller.dart';
 
 class CarrinhoItem extends StatelessWidget {
@@ -24,20 +25,20 @@ class CarrinhoItem extends StatelessWidget {
         return showDialog<bool>(
           context: context,
           builder: (ctx) => AlertDialog(
-            title: const Text('Atenção'),
-            content: const Text('Deseja remover o item do carrinho?'),
+            title: Text(context.localizations.atencao),
+            content: Text(context.localizations.desejaRemoverItem),
             actions: [
               TextButton(
                 onPressed: () {
                   Navigator.of(ctx).pop(false);
                 },
-                child: const Text('Não'),
+                child: Text(context.localizations.nao),
               ),
               TextButton(
                 onPressed: () {
                   Navigator.of(ctx).pop(true);
                 },
-                child: const Text('Sim'),
+                child: Text(context.localizations.sim),
               ),
             ],
           ),
@@ -64,7 +65,7 @@ class CarrinhoItem extends StatelessWidget {
             ),
             title: Text(carrinho.nome),
             subtitle: Text(
-              'Total: R\$ ${carrinho.preco * carrinho.quantidade}',
+              '${context.localizations.total}: R\$ ${carrinho.preco * carrinho.quantidade}',
             ),
             trailing: Text(
               ' ${carrinho.quantidade.toStringAsFixed(0)}',

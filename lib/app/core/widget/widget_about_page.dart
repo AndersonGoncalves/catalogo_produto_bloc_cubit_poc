@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:catalogo_produto_poc/app/core/ui/theme_extensions.dart';
 import 'package:catalogo_produto_poc/app/core/ui/url_launcher.dart';
+import 'package:catalogo_produto_poc/app/core/ui/localization_extension.dart';
 
 class WidgetAboutPage extends StatefulWidget {
   final bool _comAppBar;
@@ -40,7 +41,7 @@ class _WidgetAboutPageState extends State<WidgetAboutPage> {
               automaticallyImplyLeading: false,
               title: Padding(
                 padding: const EdgeInsets.only(bottom: 2),
-                child: Text('Sobre'),
+                child: Text(context.localizations.sobre),
               ),
               actions: <Widget>[
                 Container(
@@ -72,7 +73,7 @@ class _WidgetAboutPageState extends State<WidgetAboutPage> {
                   child: Image.asset('assets/icon/icon-adaptive.png'),
                 ),
                 Text(
-                  'PoC',
+                  context.localizations.poc,
                   style: TextStyle(
                     fontSize: 30,
                     color: context.primaryColor,
@@ -97,7 +98,7 @@ class _WidgetAboutPageState extends State<WidgetAboutPage> {
                               vertical: 15,
                             ),
                             child: Text(
-                              'Catálogo de Produtos',
+                              context.localizations.catalogoDeProdutos,
                               style: TextStyle(
                                 fontSize: 20,
                                 color: context.primaryColor,

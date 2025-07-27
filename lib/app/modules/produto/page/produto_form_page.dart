@@ -6,6 +6,7 @@ import 'package:catalogo_produto_poc/app/core/ui/functions.dart';
 import 'package:catalogo_produto_poc/app/core/models/produto.dart';
 import 'package:catalogo_produto_poc/app/core/ui/theme_extensions.dart';
 import 'package:catalogo_produto_poc/app/core/widget/widget_loading_page.dart';
+import 'package:catalogo_produto_poc/app/core/ui/localization_extension.dart';
 import 'package:catalogo_produto_poc/app/core/widget/widget_text_form_field.dart';
 import 'package:currency_text_input_formatter/currency_text_input_formatter.dart';
 import 'package:catalogo_produto_poc/app/modules/produto/cubit/produto_state.dart';
@@ -183,7 +184,7 @@ class _ProdutoFormPageState extends State<ProdutoFormPage> {
         return Scaffold(
           body: _isLoading
               ? WidgetLoadingPage(
-                  label: 'Salvando...',
+                  label: context.localizations.salvando,
                   labelColor: context.primaryColor,
                   backgroundColor: context.canvasColor,
                 )
@@ -209,7 +210,7 @@ class _ProdutoFormPageState extends State<ProdutoFormPage> {
                                             left: 3,
                                           ),
                                           child: Text(
-                                            'Produto',
+                                            context.localizations.produto,
                                             style: TextStyle(
                                               color: Colors.black,
                                               fontSize: 20,
@@ -234,7 +235,6 @@ class _ProdutoFormPageState extends State<ProdutoFormPage> {
                                               _fotos[0],
                                               fit: BoxFit.cover,
                                             ),
-                                            // Gradiente para melhorar legibilidade do título quando ele aparecer
                                             Positioned(
                                               top: 0,
                                               left: 0,
@@ -267,7 +267,7 @@ class _ProdutoFormPageState extends State<ProdutoFormPage> {
                                     ? Padding(
                                         padding: const EdgeInsets.only(left: 3),
                                         child: Text(
-                                          'Produto',
+                                          context.localizations.produto,
                                           style: TextStyle(
                                             color: Colors.black,
                                             fontSize: 20,
@@ -287,14 +287,16 @@ class _ProdutoFormPageState extends State<ProdutoFormPage> {
                                     child: Column(
                                       children: <Widget>[
                                         WidgetTextFormField(
-                                          labelText: 'Nome',
+                                          labelText: context.localizations.nome,
                                           keyboardType: TextInputType.text,
                                           textInputAction: TextInputAction.next,
                                           focusNode: _nomeFocus,
                                           initialValue: _formData['nome']
                                               ?.toString(),
                                           validator: Validatorless.required(
-                                            'Nome é obrigatório',
+                                            context
+                                                .localizations
+                                                .nomeObrigatorio,
                                           ),
                                           onSaved: (value) =>
                                               _formData['nome'] = value ?? '',
@@ -333,7 +335,9 @@ class _ProdutoFormPageState extends State<ProdutoFormPage> {
                                                     validator:
                                                         Validatorless.multiple([
                                                           Validatorless.required(
-                                                            'Custo é obrigatório',
+                                                            context
+                                                                .localizations
+                                                                .custoObrigatorio,
                                                           ),
                                                         ]),
                                                     onSaved: (value) =>
@@ -352,7 +356,9 @@ class _ProdutoFormPageState extends State<ProdutoFormPage> {
                                               Expanded(
                                                 child: SizedBox(
                                                   child: WidgetTextFormField(
-                                                    labelText: 'Venda',
+                                                    labelText: context
+                                                        .localizations
+                                                        .venda,
                                                     keyboardType:
                                                         TextInputType.number,
                                                     textInputAction:
@@ -373,7 +379,9 @@ class _ProdutoFormPageState extends State<ProdutoFormPage> {
                                                     validator:
                                                         Validatorless.multiple([
                                                           Validatorless.required(
-                                                            'Venda é obrigatório',
+                                                            context
+                                                                .localizations
+                                                                .vendaObrigatoria,
                                                           ),
                                                         ]),
                                                     onSaved: (value) =>
@@ -404,7 +412,9 @@ class _ProdutoFormPageState extends State<ProdutoFormPage> {
                                     child: Column(
                                       children: <Widget>[
                                         WidgetTextFormField(
-                                          labelText: 'Quantidade em estoque',
+                                          labelText: context
+                                              .localizations
+                                              .quantidadeEmEstoque,
                                           keyboardType: TextInputType.number,
                                           textInputAction: TextInputAction.next,
                                           focusNode: _quantidadeEmEstoqueFocus,
@@ -413,7 +423,9 @@ class _ProdutoFormPageState extends State<ProdutoFormPage> {
                                           validator: (value) {
                                             final nome = value ?? '';
                                             if (nome.trim().isEmpty) {
-                                              return 'Quantidade é obrigatório';
+                                              return context
+                                                  .localizations
+                                                  .quantidadeObrigatoria;
                                             }
                                             return null;
                                           },
@@ -429,7 +441,9 @@ class _ProdutoFormPageState extends State<ProdutoFormPage> {
                                         ),
 
                                         WidgetTextFormField(
-                                          labelText: 'Código de Barras',
+                                          labelText: context
+                                              .localizations
+                                              .codigoDeBarras,
                                           keyboardType: TextInputType.text,
                                           textInputAction: TextInputAction.next,
                                           focusNode: _codigoBarrasFocus,
@@ -456,7 +470,8 @@ class _ProdutoFormPageState extends State<ProdutoFormPage> {
                                         ),
 
                                         WidgetTextFormField(
-                                          labelText: 'Marca',
+                                          labelText:
+                                              context.localizations.marca,
                                           keyboardType: TextInputType.text,
                                           textInputAction: TextInputAction.next,
                                           focusNode: _marcaFocus,
@@ -475,7 +490,8 @@ class _ProdutoFormPageState extends State<ProdutoFormPage> {
                                             top: 10,
                                           ),
                                           child: WidgetTextFormField(
-                                            labelText: 'Descrição',
+                                            labelText:
+                                                context.localizations.descricao,
                                             keyboardType:
                                                 TextInputType.multiline,
                                             textInputAction:
@@ -485,7 +501,9 @@ class _ProdutoFormPageState extends State<ProdutoFormPage> {
                                                 ?.toString(),
                                             validator: Validatorless.multiple([
                                               Validatorless.required(
-                                                'Descrição é obrigatório',
+                                                context
+                                                    .localizations
+                                                    .descricaoObrigatoria,
                                               ),
                                             ]),
                                             onSaved: (value) =>
@@ -508,7 +526,7 @@ class _ProdutoFormPageState extends State<ProdutoFormPage> {
                                     ),
                                     child: ElevatedButton(
                                       onPressed: _save,
-                                      child: Text('Salvar'),
+                                      child: Text(context.localizations.salvar),
                                     ),
                                   ),
 
@@ -531,7 +549,7 @@ class _ProdutoFormPageState extends State<ProdutoFormPage> {
                                           ),
                                           const SizedBox(width: 8),
                                           Text(
-                                            'Voltar',
+                                            context.localizations.voltar,
                                             style: TextStyle(
                                               color: context.secondaryColor,
                                             ),
@@ -545,45 +563,6 @@ class _ProdutoFormPageState extends State<ProdutoFormPage> {
                             ],
                           ),
                         ),
-                        // Padding(
-                        //   padding: const EdgeInsets.only(
-                        //     left: 15,
-                        //     right: 15,
-                        //     bottom: 10,
-                        //     top: 10,
-                        //   ),
-                        //   child: ElevatedButton(
-                        //     onPressed: _save,
-                        //     child: Text('Salvar'),
-                        //   ),
-                        // ),
-
-                        // Padding(
-                        //   padding: const EdgeInsets.only(
-                        //     left: 15,
-                        //     right: 15,
-                        //     bottom: 20,
-                        //   ),
-                        //   child: OutlinedButton(
-                        //     onPressed: () => Navigator.of(context).pop(),
-                        //     child: Row(
-                        //       mainAxisAlignment: MainAxisAlignment.center,
-                        //       children: [
-                        //         Icon(
-                        //           Icons.arrow_back,
-                        //           color: context.tertiaryColor,
-                        //         ),
-                        //         const SizedBox(width: 8),
-                        //         Text(
-                        //           'Voltar',
-                        //           style: TextStyle(
-                        //             color: context.tertiaryColor,
-                        //           ),
-                        //         ),
-                        //       ],
-                        //     ),
-                        //   ),
-                        // ),
                       ],
                     ),
                   ),

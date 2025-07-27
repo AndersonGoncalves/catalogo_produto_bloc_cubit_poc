@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:catalogo_produto_poc/app/core/ui/theme_extensions.dart';
+import 'package:catalogo_produto_poc/app/core/ui/localization_extension.dart';
 import 'package:catalogo_produto_poc/app/core/widget/widget_loading_page.dart';
 import 'package:catalogo_produto_poc/app/modules/produto/page/produto_grid.dart';
 import 'package:catalogo_produto_poc/app/modules/produto/cubit/produto_state.dart';
@@ -28,7 +29,7 @@ class _ProdutoFavoritosPageState extends State<ProdutoFavoritosPage> {
       builder: (context, state) {
         if (state.isLoading) {
           return WidgetLoadingPage(
-            label: 'Carregando favoritos...',
+            label: context.localizations.carregandoFavoritos,
             labelColor: context.primaryColor,
             backgroundColor: context.canvasColor,
           );
@@ -47,13 +48,12 @@ class _ProdutoFavoritosPageState extends State<ProdutoFavoritosPage> {
                     padding: const EdgeInsets.all(16),
                     color: context.primaryColor.withOpacity(0.1),
                     child: Text(
-                      '❤️ Meus Favoritos',
+                      '❤️ ${context.localizations.meusFavoritos}',
                       style: TextStyle(
                         fontSize: 18,
                         fontWeight: FontWeight.bold,
                         color: context.primaryColor,
                       ),
-                      // textAlign: TextAlign.center,
                     ),
                   ),
             Expanded(
@@ -69,7 +69,7 @@ class _ProdutoFavoritosPageState extends State<ProdutoFavoritosPage> {
                           ),
                           const SizedBox(height: 16),
                           Text(
-                            'Nenhum produto favorito',
+                            context.localizations.nenhumProdutoFavorito,
                             style: TextStyle(
                               fontSize: 18,
                               color: Colors.grey[600],
@@ -77,7 +77,9 @@ class _ProdutoFavoritosPageState extends State<ProdutoFavoritosPage> {
                           ),
                           const SizedBox(height: 8),
                           Text(
-                            'Adicione produtos aos favoritos para vê-los aqui',
+                            context
+                                .localizations
+                                .adicioneProdutosAosFavoritosParaVeLosAqui,
                             style: TextStyle(
                               fontSize: 14,
                               color: Colors.grey[500],
