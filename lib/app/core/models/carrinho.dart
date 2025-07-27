@@ -44,7 +44,7 @@ class Carrinho {
       'nome': nome,
       'quantidade': quantidade,
       'preco': preco,
-      'produto': produto?.toMap(),
+      'produto': produto.toMap(),
     };
   }
 

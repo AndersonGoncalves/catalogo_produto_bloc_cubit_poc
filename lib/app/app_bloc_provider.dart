@@ -38,14 +38,31 @@ class AppBlocProvider extends StatelessWidget {
         //Produto
         BlocProvider<ProdutoController>(
           create: (context) {
-            final usuarioRepository = UsuarioRepositoryImpl(
-              firebaseAuth: FirebaseAuth.instance,
-            );
+            final usuarioController = context.read<UsuarioController>();
+            final currentUser = usuarioController.user;
+
             return ProdutoController(
               produtoService: ProdutoServiceImpl(
                 produtoRepository: ProdutoRepositoryImpl(
-                  token: usuarioRepository.user.refreshToken.toString(),
+                  token: currentUser.refreshToken ?? '',
                   produtos: [],
+                ),
+              ),
+            );
+          },
+        ),
+
+        //Pedido
+        BlocProvider<PedidoController>(
+          create: (context) {
+            final usuarioController = context.read<UsuarioController>();
+            final currentUser = usuarioController.user;
+
+            return PedidoController(
+              pedidoService: PedidoServiceImpl(
+                pedidoRepository: PedidoRepositoryImpl(
+                  token: currentUser.refreshToken ?? '',
+                  userId: currentUser.uid,
                 ),
               ),
             );
@@ -59,22 +76,6 @@ class AppBlocProvider extends StatelessWidget {
             return CarrinhoController(
               carrinhoService: CarrinhoServiceImpl(
                 carrinhoRepository: carrinhoRepository,
-              ),
-            );
-          },
-        ),
-
-        BlocProvider<PedidoController>(
-          create: (context) {
-            final usuarioRepository = UsuarioRepositoryImpl(
-              firebaseAuth: FirebaseAuth.instance,
-            );
-            return PedidoController(
-              pedidoService: PedidoServiceImpl(
-                pedidoRepository: PedidoRepositoryImpl(
-                  token: usuarioRepository.user.refreshToken.toString(),
-                  userId: usuarioRepository.user.uid.toString(),
-                ),
               ),
             );
           },
