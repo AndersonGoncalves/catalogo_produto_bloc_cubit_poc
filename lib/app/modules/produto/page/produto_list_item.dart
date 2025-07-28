@@ -21,8 +21,6 @@ class ProdutoListItem extends StatefulWidget {
 class _ProdutoListItemState extends State<ProdutoListItem> {
   @override
   Widget build(BuildContext context) {
-    final formatCurrency = FormatCurrency();
-
     return Dismissible(
       key: Key(widget._produto.id),
       direction: DismissDirection.endToStart,
@@ -97,7 +95,10 @@ class _ProdutoListItemState extends State<ProdutoListItem> {
             crossAxisAlignment: CrossAxisAlignment.end,
             children: [
               Text(
-                formatCurrency.format(widget._produto.precoDeVenda),
+                FormatCurrency.formatByDevice(
+                  widget._produto.precoDeVenda,
+                  context,
+                ),
                 style: TextStyle(
                   fontSize: 14,
                   color: Colors.black54,

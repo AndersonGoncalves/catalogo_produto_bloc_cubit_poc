@@ -14,7 +14,6 @@ class CarrinhoPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final FormatCurrency formatCurrency = FormatCurrency();
     final carrinhoController = Provider.of<CarrinhoController>(context);
     final items = carrinhoController.items.values.toList();
 
@@ -109,8 +108,9 @@ class CarrinhoPage extends StatelessWidget {
                               ),
                               const SizedBox(width: 10),
                               Text(
-                                formatCurrency.format(
+                                FormatCurrency.formatByDevice(
                                   carrinhoController.valorTotal,
+                                  context,
                                 ),
                                 style: const TextStyle(
                                   fontSize: 20,

@@ -56,6 +56,48 @@ class Produto {
     );
   }
 
+  static double _parsePreco(dynamic price) {
+    if (price == null) return 0.0;
+
+    // Se já é um double/num, retorna diretamente
+    if (price is num) return price.toDouble();
+
+    // Se é string, verifica se precisa de processamento
+    final priceStr = price.toString();
+
+    // Se contém apenas números e pontos/vírgulas, é um valor direto
+    if (RegExp(r'^[\d.,]+$').hasMatch(priceStr)) {
+      final cleanPrice = priceStr.replaceAll(',', '.');
+      return double.tryParse(cleanPrice) ?? 0.0;
+    }
+
+    // Se contém outros caracteres, remove tudo exceto números e divide por 100
+    final numericOnly = priceStr.replaceAll(RegExp(r'[^0-9]'), '');
+    if (numericOnly.isEmpty) return 0.0;
+
+    return double.tryParse(numericOnly)! / 100;
+  }
+
+  static List<String>? _parseFotos(dynamic photos) {
+    if (photos == null) return null;
+
+    // Se é uma lista vazia ou string vazia
+    if (photos == '' || (photos is List && photos.isEmpty)) return null;
+
+    if (photos is List) {
+      return photos.map((item) {
+        // Se o item é um Map com 'url', extrai a URL
+        if (item is Map<String, dynamic> && item.containsKey('url')) {
+          return item['url'].toString();
+        }
+        // Se é uma string direta, retorna ela
+        return item.toString();
+      }).toList();
+    }
+
+    return null;
+  }
+
   Map<String, dynamic> toMap() {
     return {
       'id': id,
@@ -74,7 +116,7 @@ class Produto {
     };
   }
 
-  factory Produto.fromMap(Map<String, dynamic> map, bool load) {
+  factory Produto.fromMap(Map<String, dynamic> map) {
     return Produto(
       id: map['id'] as String,
       dataCadastro: map['id'] == ''
@@ -84,42 +126,20 @@ class Produto {
       descricao: map['descricao']?.toString(),
       marca: map['marca']?.toString(),
       isFavorito: map['isFavorito'] ?? false,
-      precoDeVenda: load
-          ? map['precoDeVenda']?.toDouble() ?? 0.0
-          : double.tryParse(
-                  map['precoDeVenda']
-                      .replaceAll(RegExp(r'[^0-9]'), '')
-                      .toString(),
-                )! /
-                100,
-      precoDeCusto: load
-          ? map['precoDeCusto']?.toDouble() ?? 0.0
-          : double.tryParse(
-                  map['precoDeCusto']
-                      .replaceAll(RegExp(r'[^0-9]'), '')
-                      .toString(),
-                )! /
-                100,
+      precoDeVenda: _parsePreco(map['precoDeVenda']),
+      precoDeCusto: _parsePreco(map['precoDeCusto']),
       codigoBarras: map['codigoBarras']?.toString(),
       quantidadeEmEstoque: map['quantidadeEmEstoque'] == null
           ? 0
           : int.parse(map['quantidadeEmEstoque'].toString()),
-      fotos: map['fotos'] != null
-          ? load
-                ? (map['fotos'] as List<dynamic>).map((item) {
-                    return item['url'].toString();
-                  }).toList()
-                : (map['fotos'] as List<String>).map((item) {
-                    return item.toString();
-                  }).toList()
-          : null,
+      fotos: _parseFotos(map['fotos']),
     );
   }
 
   String toJson() => json.encode(toMap());
 
   factory Produto.fromJson(String source) =>
-      Produto.fromMap(json.decode(source), true);
+      Produto.fromMap(json.decode(source));
 
   @override
   bool operator ==(Object other) {

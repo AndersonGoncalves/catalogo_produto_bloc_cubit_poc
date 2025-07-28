@@ -1,19 +1,20 @@
-import 'dart:convert';
-import 'dart:io' as io;
+import 'package:dio/dio.dart';
 import 'package:catalogo_produto_poc/app/core/constants/url.dart';
 import 'package:catalogo_produto_poc/app/core/models/pedido.dart';
 import 'package:catalogo_produto_poc/app/core/exceptions/http_exception.dart';
 import 'package:catalogo_produto_poc/app/repositories/pedido/pedido_repository.dart';
-import 'package:http/http.dart' as http;
 
 class PedidoRepositoryImpl implements PedidoRepository {
   final String _token;
   final String _userId;
   final List<Pedido> _pedidos = [];
+  late final Dio _dio;
 
   PedidoRepositoryImpl({required String token, required String userId})
     : _token = token,
-      _userId = userId;
+      _userId = userId {
+    _dio = Dio();
+  }
 
   @override
   List<Pedido> get pedidos => [..._pedidos];
@@ -21,100 +22,92 @@ class PedidoRepositoryImpl implements PedidoRepository {
   @override
   Future<void> get() async {
     try {
-      final response = await http.get(
-        Uri.parse('${Url.firebase(userId: _userId).pedido}.json?auth=$_token'),
+      final response = await _dio.get(
+        '${Url.firebase(userId: _userId).pedido}.json',
+        queryParameters: {'auth': _token},
       );
 
-      if (response.statusCode == 200) {
-        _pedidos.clear();
-        final Map<String, dynamic>? data = json.decode(response.body);
+      _pedidos.clear();
+      final Map<String, dynamic>? data = response.data;
 
-        if (data != null) {
-          data.forEach((pedidoId, pedidoData) {
-            _pedidos.add(Pedido.fromMap(pedidoId, pedidoData));
-          });
-        }
-      } else {
-        throw HttpException(
-          msg: 'Erro ao carregar pedidos',
-          statusCode: response.statusCode,
-        );
+      if (data != null) {
+        data.forEach((pedidoId, pedidoData) {
+          _pedidos.add(Pedido.fromMap(pedidoId, pedidoData));
+        });
       }
+    } on DioException catch (e) {
+      throw HttpException(
+        msg: 'Erro ao carregar pedidos',
+        statusCode: e.response?.statusCode ?? 500,
+      );
     } catch (e) {
-      throw io.HttpException('Erro ao carregar pedidos: $e');
+      throw HttpException(msg: 'Erro ao carregar pedidos: $e', statusCode: 500);
     }
   }
 
   @override
   Future<void> post(Pedido pedido) async {
     try {
-      final response = await http.post(
-        Uri.parse('${Url.firebase(userId: _userId).pedido}.json?auth=$_token'),
-        headers: {'Content-Type': 'application/json'},
-        body: json.encode(pedido.toMap()),
+      final response = await _dio.post(
+        '${Url.firebase(userId: _userId).pedido}.json',
+        queryParameters: {'auth': _token},
+        data: pedido.toMap(),
+        options: Options(headers: {'Content-Type': 'application/json'}),
       );
 
-      if (response.statusCode == 200) {
-        final responseData = json.decode(response.body);
-        final novoPedido = pedido.copyWith(id: responseData['name']);
-        _pedidos.add(novoPedido);
-      } else {
-        throw HttpException(
-          msg: 'Erro ao salvar pedido',
-          statusCode: response.statusCode,
-        );
-      }
+      final responseData = response.data;
+      final novoPedido = pedido.copyWith(id: responseData['name']);
+      _pedidos.add(novoPedido);
+    } on DioException catch (e) {
+      throw HttpException(
+        msg: 'Erro ao salvar pedido',
+        statusCode: e.response?.statusCode ?? 500,
+      );
     } catch (e) {
-      throw io.HttpException('Erro ao salvar pedido: $e');
+      throw HttpException(msg: 'Erro ao salvar pedido: $e', statusCode: 500);
     }
   }
 
   @override
   Future<void> patch(Pedido pedido) async {
     try {
-      final response = await http.patch(
-        Uri.parse(
-          '${Url.firebase(userId: _userId).pedido}/${pedido.id}.json?auth=$_token',
-        ),
-        headers: {'Content-Type': 'application/json'},
-        body: json.encode(pedido.toMap()),
+      await _dio.patch(
+        '${Url.firebase(userId: _userId).pedido}/${pedido.id}.json',
+        queryParameters: {'auth': _token},
+        data: pedido.toMap(),
+        options: Options(headers: {'Content-Type': 'application/json'}),
       );
 
-      if (response.statusCode == 200) {
-        final index = _pedidos.indexWhere((p) => p.id == pedido.id);
-        if (index >= 0) {
-          _pedidos[index] = pedido;
-        }
-      } else {
-        throw HttpException(
-          msg: 'Erro ao atualizar pedido',
-          statusCode: response.statusCode,
-        );
+      final index = _pedidos.indexWhere((p) => p.id == pedido.id);
+      if (index >= 0) {
+        _pedidos[index] = pedido;
       }
+    } on DioException catch (e) {
+      throw HttpException(
+        msg: 'Erro ao atualizar pedido',
+        statusCode: e.response?.statusCode ?? 500,
+      );
     } catch (e) {
-      throw io.HttpException('Erro ao atualizar pedido: $e');
+      throw HttpException(msg: 'Erro ao atualizar pedido: $e', statusCode: 500);
     }
   }
 
   @override
   Future<void> delete(Pedido pedido) async {
     try {
-      final response = await http.delete(
-        Uri.parse(
-          '${Url.firebase(userId: _userId).pedido}/${pedido.id}.json?auth=$_token',
-        ),
+      await _dio.delete(
+        '${Url.firebase(userId: _userId).pedido}/${pedido.id}.json',
+        queryParameters: {'auth': _token},
       );
 
-      if (response.statusCode == 200) {
-        _pedidos.removeWhere((p) => p.id == pedido.id);
-      } else {
-        throw HttpException(
-          msg: 'Erro ao deletar pedido',
-          statusCode: response.statusCode,
-        );
-      }
+      _pedidos.removeWhere((p) => p.id == pedido.id);
+    } on DioException catch (e) {
+      throw HttpException(
+        msg: 'Erro ao deletar pedido',
+        statusCode: e.response?.statusCode ?? 500,
+      );
     } catch (e) {
-      throw io.HttpException('Erro ao deletar pedido: $e');
+      throw HttpException(msg: 'Erro ao deletar pedido: $e', statusCode: 500);
     }
   }
 }

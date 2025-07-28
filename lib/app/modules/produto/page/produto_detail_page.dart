@@ -221,7 +221,6 @@ class _ProdutoDetailPageState extends State<ProdutoDetailPage> {
 
   @override
   Widget build(BuildContext context) {
-    final formatCurrency = FormatCurrency();
     return BlocConsumer<CarrinhoController, CarrinhoState>(
       listener: (context, state) {
         if (state.error != null && state.error!.isNotEmpty) {
@@ -354,7 +353,10 @@ class _ProdutoDetailPageState extends State<ProdutoDetailPage> {
                       const SizedBox(height: 16),
 
                       Text(
-                        formatCurrency.format(widget.produto.precoDeVenda),
+                        FormatCurrency.formatByDevice(
+                          widget.produto.precoDeVenda,
+                          context,
+                        ),
                         style: const TextStyle(
                           fontSize: 28,
                           fontWeight: FontWeight.bold,

@@ -31,12 +31,12 @@ class _ProdutoGridState extends State<ProdutoGrid> {
               padding: const EdgeInsets.symmetric(horizontal: 5),
               child: GridView.builder(
                 itemCount: widget._produtos.length,
-                padding: const EdgeInsets.all(10),
+                padding: const EdgeInsets.all(7),
                 gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 2,
                   childAspectRatio: 0.6,
-                  crossAxisSpacing: 10,
-                  mainAxisSpacing: 20,
+                  crossAxisSpacing: 5,
+                  mainAxisSpacing: 5,
                 ),
                 itemBuilder: (ctx, index) => ProdutoGridItem(
                   key: Key('grid_${widget._produtos[index].id}'),

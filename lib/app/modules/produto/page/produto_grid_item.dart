@@ -20,7 +20,6 @@ class ProdutoGridItem extends StatefulWidget {
 class _ProdutoGridItemState extends State<ProdutoGridItem> {
   @override
   Widget build(BuildContext context) {
-    final formatCurrency = FormatCurrency();
     final carrinho = context.read<CarrinhoController>();
 
     return ClipRRect(
@@ -36,7 +35,10 @@ class _ProdutoGridItemState extends State<ProdutoGridItem> {
             style: TextStyle(color: Colors.black, fontSize: 12),
           ),
           subtitle: Text(
-            formatCurrency.format(widget._produto.precoDeVenda),
+            FormatCurrency.formatByDevice(
+              widget._produto.precoDeVenda,
+              context,
+            ),
             style: TextStyle(
               color: context.primaryColor,
               fontSize: 16,

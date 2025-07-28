@@ -56,7 +56,7 @@ class Carrinho {
       quantidade: map['quantidade']?.toDouble() ?? 0.0,
       preco: map['preco']?.toDouble() ?? 0.0,
       produto: map['produto'] != null
-          ? Produto.fromMap(map['produto'], true)
+          ? Produto.fromMap(map['produto'])
           : Produto(
               id: '',
               dataCadastro: DateTime.now(),

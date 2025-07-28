@@ -44,15 +44,19 @@ class _ProdutoFavoritosPageState extends State<ProdutoFavoritosPage> {
             produtosFavoritos.isEmpty
                 ? const SizedBox.shrink()
                 : Container(
+                    height: 64,
                     width: double.infinity,
                     padding: const EdgeInsets.all(16),
                     color: context.primaryColor.withOpacity(0.1),
-                    child: Text(
-                      '❤️ ${context.localizations.meusFavoritos}',
-                      style: TextStyle(
-                        fontSize: 18,
-                        fontWeight: FontWeight.bold,
-                        color: context.primaryColor,
+                    child: Align(
+                      alignment: Alignment.centerLeft,
+                      child: Text(
+                        '❤️ ${context.localizations.meusFavoritos}',
+                        style: TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold,
+                          color: context.primaryColor,
+                        ),
                       ),
                     ),
                   ),

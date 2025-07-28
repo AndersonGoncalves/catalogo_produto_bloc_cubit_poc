@@ -1,4 +1,5 @@
 import 'package:intl/intl.dart';
+import 'package:flutter/material.dart';
 
 class FormatCurrency {
   final String locale;
@@ -19,7 +20,26 @@ class FormatCurrency {
     );
   }
 
-  String format(num value) {
+  String _formatByLocale(num value, Locale deviceLocale) {
+    final languageCode = deviceLocale.languageCode.toLowerCase();
+
+    switch (languageCode) {
+      case 'en':
+        return usa.format(value);
+      case 'es':
+        return euro.format(value);
+      case 'pt':
+        return brazil.format(value);
+      default:
+        return usa.format(value);
+    }
+  }
+
+  String format(num value, [BuildContext? context]) {
+    if (context != null) {
+      final deviceLocale = Localizations.localeOf(context);
+      return _formatByLocale(value, deviceLocale);
+    }
     return _formatter.format(value);
   }
 
@@ -58,6 +78,27 @@ class FormatCurrency {
   );
 
   static final FormatCurrency noSymbol = FormatCurrency(symbol: '');
+
+  static String formatByLocale(num value, Locale deviceLocale) {
+    final formatCurrency = FormatCurrency();
+    return formatCurrency._formatByLocale(value, deviceLocale);
+  }
+
+  static String formatByDevice(num value, BuildContext context) {
+    final deviceLocale = Localizations.localeOf(context);
+    final languageCode = deviceLocale.languageCode.toLowerCase();
+
+    switch (languageCode) {
+      case 'en':
+        return usa.format(value);
+      case 'es':
+        return euro.format(value);
+      case 'pt':
+        return brazil.format(value);
+      default:
+        return usa.format(value);
+    }
+  }
 
   static String formatBRL(num value) {
     return brazil.format(value);

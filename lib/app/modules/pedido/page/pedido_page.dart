@@ -32,7 +32,6 @@ class _PedidoPageState extends State<PedidoPage> {
   }
 
   Widget _buildPedidoCard(Pedido pedido) {
-    FormatCurrency formatCurrency = FormatCurrency();
     return Card(
       color: Colors.white,
       margin: const EdgeInsets.only(bottom: 16),
@@ -79,7 +78,7 @@ class _PedidoPageState extends State<PedidoPage> {
             ),
             const SizedBox(height: 8),
             Text(
-              '${context.localizations.total}: ${formatCurrency.format(pedido.total)}',
+              '${context.localizations.total}: ${FormatCurrency.formatByDevice(pedido.total, context)}',
               style: const TextStyle(
                 fontSize: 16,
                 fontWeight: FontWeight.bold,
@@ -105,7 +104,7 @@ class _PedidoPageState extends State<PedidoPage> {
                       ),
                     ),
                     Text(
-                      ' ${formatCurrency.format(item.total)}',
+                      ' ${FormatCurrency.formatByDevice(item.total, context)}',
                       style: TextStyle(color: Colors.grey[700]),
                     ),
                   ],
@@ -145,15 +144,19 @@ class _PedidoPageState extends State<PedidoPage> {
             state.pedidos.isEmpty
                 ? SizedBox.shrink()
                 : Container(
+                    height: 64,
                     width: double.infinity,
                     padding: const EdgeInsets.all(16),
                     color: context.primaryColor.withOpacity(0.1),
-                    child: Text(
-                      '📦 ${context.localizations.meusPedidos}',
-                      style: TextStyle(
-                        fontSize: 18,
-                        fontWeight: FontWeight.bold,
-                        color: context.primaryColor,
+                    child: Align(
+                      alignment: Alignment.centerLeft,
+                      child: Text(
+                        '📦 ${context.localizations.meusPedidos}',
+                        style: TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold,
+                          color: context.primaryColor,
+                        ),
                       ),
                     ),
                   ),

@@ -101,7 +101,6 @@ class ProdutotCalculadoraPrecoPageState
 
   @override
   Widget build(BuildContext context) {
-    final formatCurrency = FormatCurrency();
     final formatPercentual = FormatCurrency.noSymbol;
 
     return Scaffold(
@@ -227,12 +226,14 @@ class ProdutotCalculadoraPrecoPageState
                                       ),
                                       FittedBox(
                                         child: Text(
-                                          formatCurrency.format(
+                                          FormatCurrency.formatByDevice(
                                             lucro(
                                               double.tryParse(_precoCustoText)!,
                                               precoVendaTemp,
                                             ),
+                                            context,
                                           ),
+
                                           textAlign: TextAlign.center,
                                           style: const TextStyle(
                                             color: Colors.black,
@@ -269,7 +270,7 @@ class ProdutotCalculadoraPrecoPageState
                                         const SizedBox(height: 5),
                                         FittedBox(
                                           child: Text(
-                                            ' ${formatCurrency.format(precoVenda(double.tryParse(_precoCustoText)!, double.tryParse(_markupText)!))}'
+                                            ' ${FormatCurrency.formatByDevice(precoVenda(double.tryParse(_precoCustoText)!, double.tryParse(_markupText)!), context)}'
                                                 .trim(),
                                             textAlign: TextAlign.center,
                                             style: const TextStyle(
