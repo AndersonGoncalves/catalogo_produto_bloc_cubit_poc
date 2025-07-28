@@ -349,10 +349,7 @@ class _ProdutoDetailPageState extends State<ProdutoDetailPage> {
                       Text(
                         widget.produto.descricao!,
                         textAlign: TextAlign.justify,
-                        style: const TextStyle(
-                          fontSize: 14,
-                          fontWeight: FontWeight.bold,
-                        ),
+                        style: const TextStyle(fontSize: 14),
                       ),
                       const SizedBox(height: 16),
 

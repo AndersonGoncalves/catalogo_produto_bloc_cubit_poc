@@ -9,13 +9,13 @@ class AppLocalizationsEn extends AppLocalizations {
   AppLocalizationsEn([String locale = 'en']) : super(locale);
 
   @override
-  String get idioma => 'en';
+  String get idioma => 'en_US';
 
   @override
   String get catalogoDeProdutos => 'Product Catalog';
 
   @override
-  String get produto => 'Produto';
+  String get produto => 'Product';
 
   @override
   String get produtos => 'Products';
@@ -33,10 +33,10 @@ class AppLocalizationsEn extends AppLocalizations {
   String get carregando => 'Loading...';
 
   @override
-  String get carregandoFavoritos => 'Carregando favoritos...';
+  String get carregandoFavoritos => 'Loading favorites...';
 
   @override
-  String get salvando => 'Salvando...';
+  String get salvando => 'Saving...';
 
   @override
   String get poc => 'PoC';
@@ -53,10 +53,10 @@ class AppLocalizationsEn extends AppLocalizations {
   String get ocorreuUmErroInesperado => 'An unexpected error occurred';
 
   @override
-  String get ocorreuUmErroNaAplicacao => 'Ocorreu um erro na aplicação';
+  String get ocorreuUmErroNaAplicacao => 'An error occurred in the application';
 
   @override
-  String get error => 'Erro';
+  String get error => 'Error';
 
   @override
   String get fechar => 'Close';
@@ -80,7 +80,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get confirmarSenha => 'Confirm password';
 
   @override
-  String get senhasInformadasNaoConferem => 'Passwords do not match';
+  String get senhasInformadasNaoConferem => 'Passwords entered do not match';
 
   @override
   String get aoUsarOAppVoceConcordaComNossosTermos =>
@@ -91,20 +91,20 @@ class AppLocalizationsEn extends AppLocalizations {
       'Terms of use and privacy policy';
 
   @override
-  String get entrar => 'Sign in';
+  String get entrar => 'Login';
 
   @override
   String get registrar => 'Register';
 
   @override
-  String get loginComGoogle => 'Sign in with Google';
+  String get loginComGoogle => 'Login with Google';
 
   @override
   String get esqueceuASenha => 'Forgot password?';
 
   @override
   String get recuperacaoDeSenhaEnviadaParaEmailInformado =>
-      'Password recovery sent to the informed email';
+      'Password recovery sent to informed email';
 
   @override
   String get desejaRegistrar => 'Want to register?';
@@ -143,92 +143,92 @@ class AppLocalizationsEn extends AppLocalizations {
   String get desejaExcluirORegistro => 'Do you want to delete the record?';
 
   @override
-  String get und => 'Und';
+  String get und => 'Unit';
 
   @override
-  String get semImagem => 'Sem Imagem';
+  String get semImagem => 'No Image';
 
   @override
-  String get urlInvalida => 'Url Inválida';
+  String get urlInvalida => 'Invalid Url';
 
   @override
-  String get quantidadeMaximaPermitida => 'Quantidade máxima permitida';
+  String get quantidadeMaximaPermitida => 'Maximum quantity allowed';
 
   @override
-  String get foto => 'Foto';
+  String get foto => 'Photo';
 
   @override
-  String get fotos => 'Fotos';
+  String get fotos => 'Photos';
 
   @override
-  String get urlDaFoto => 'Url da foto';
+  String get urlDaFoto => 'Photo url';
 
   @override
-  String get nomeObrigatorio => 'Nome é Obrigatório';
+  String get nomeObrigatorio => 'Name is Required';
 
   @override
-  String get custoObrigatorio => 'Custo é Obrigatório';
+  String get custoObrigatorio => 'Cost is Required';
 
   @override
-  String get venda => 'Venda';
+  String get venda => 'Sale';
 
   @override
-  String get vendaObrigatoria => 'Venda é Obrigatória';
+  String get vendaObrigatoria => 'Sale is Required';
 
   @override
-  String get quantidadeEmEstoque => 'Quantidade em estoque';
+  String get quantidadeEmEstoque => 'Quantity in stock';
 
   @override
-  String get quantidadeObrigatoria => 'Quantidade é Obrigatória';
+  String get quantidadeObrigatoria => 'Quantity is Required';
 
   @override
-  String get marca => 'Marca';
+  String get marca => 'Brand';
 
   @override
-  String get descricao => 'Descrição';
+  String get descricao => 'Description';
 
   @override
-  String get codigoDeBarras => 'Código de barras';
+  String get codigoDeBarras => 'Barcode';
 
   @override
-  String get descricaoObrigatoria => 'Descrição é Obrigatória';
+  String get descricaoObrigatoria => 'Description is Required';
 
   @override
-  String get salvar => 'Salvar';
+  String get salvar => 'Save';
 
   @override
-  String get voltar => 'Voltar';
+  String get voltar => 'Back';
 
   @override
-  String get meusFavoritos => 'Meus Favoritos';
+  String get meusFavoritos => 'My Favorites';
 
   @override
-  String get nenhumProdutoFavorito => 'Nenhum Produto Favorito';
+  String get nenhumProdutoFavorito => 'No Favorite Product';
 
   @override
   String get adicioneProdutosAosFavoritosParaVeLosAqui =>
-      'Adicione produtos aos favoritos para vê-los aqui';
+      'Add products to favorites to see them here';
 
   @override
-  String get comprar => 'Comprar';
+  String get comprar => 'Buy';
 
   @override
-  String get calculadoraDePreco => 'Calculadora de Preço';
+  String get calculadoraDePreco => 'Price Calculator';
 
   @override
-  String get custo => 'Custo';
+  String get custo => 'Cost';
 
   @override
   String get markup => 'Markup';
 
   @override
-  String get lucro => 'Lucro';
+  String get lucro => 'Profit';
 
   @override
-  String get margem => 'Margem';
+  String get margem => 'Margin';
 
   @override
-  String get confirmar => 'CONFIRMAR';
+  String get confirmar => 'CONFIRM';
 
   @override
   String get confirmado => 'Confirmed';
@@ -243,29 +243,29 @@ class AppLocalizationsEn extends AppLocalizations {
   String get entregue => 'Delivered';
 
   @override
-  String get carrinhoDeCompras => 'Carrinho de Compras';
+  String get carrinhoDeCompras => 'Shopping Cart';
 
   @override
-  String get seuCarrinhoEstaVazio => 'Seu carrinho está vazio';
+  String get seuCarrinhoEstaVazio => 'Your cart is empty';
 
   @override
   String get total => 'Total';
 
   @override
-  String get desejaRemoverItem => 'Deseja Remover o Item?';
+  String get desejaRemoverItem => 'Do you want to Remove the Item?';
 
   @override
-  String get registroNaoEncontrado => 'Registro não encontrado';
+  String get registroNaoEncontrado => 'Record not found';
 
   @override
-  String get perfil => 'Perfil';
+  String get perfil => 'Profile';
 
   @override
   String get ok => 'OK';
 
   @override
   String get desejaSairDaAplicacaoIraPerderTodosOsDados =>
-      'Deseja sair da Aplicaçao? Irá perder todos os seus dados.';
+      'Do you want to exit the Application? You will lose all your data.';
 
   @override
   String get pedido => 'Order';
@@ -289,14 +289,14 @@ class AppLocalizationsEn extends AppLocalizations {
   String get seusPedidosIraoAparecerAqui => 'Your orders will appear here';
 
   @override
-  String get nenhumPedidoEncontrado => 'No orders found';
+  String get nenhumPedidoEncontrado => 'No order found';
 
   @override
   String get home => 'Home';
 
   @override
-  String get pedidoCriadoComSucesso => 'Pedido criado com sucesso!';
+  String get pedidoCriadoComSucesso => 'Order created successfully!';
 
   @override
-  String get erroAoCriarPedido => 'Erro ao criar pedido';
+  String get erroAoCriarPedido => 'Error creating order';
 }
