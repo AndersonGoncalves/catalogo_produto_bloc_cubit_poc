@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:catalogo_produto_poc/app/core/ui/messages.dart';
 import 'package:catalogo_produto_poc/app/core/models/produto.dart';
-import 'package:catalogo_produto_poc/app/core/constants/rotas.dart';
+import 'package:catalogo_produto_poc/app/core/ui/app_routes.dart';
 import 'package:catalogo_produto_poc/app/core/ui/format_currency.dart';
 import 'package:catalogo_produto_poc/app/core/ui/theme_extensions.dart';
 import 'package:catalogo_produto_poc/app/core/ui/localization_extension.dart';
@@ -284,7 +284,7 @@ class _ProdutoDetailPageState extends State<ProdutoDetailPage> {
                   final quantidade = state.items.length;
                   return IconButton(
                     onPressed: () {
-                      Navigator.of(context).pushNamed(Rotas.carrinho);
+                      AppRoutes.goToCarrinho(context);
                     },
                     padding: const EdgeInsets.all(12.0),
                     icon: quantidade > 0

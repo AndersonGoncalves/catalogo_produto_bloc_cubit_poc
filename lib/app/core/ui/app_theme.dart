@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class ThemeConfig {
+class AppTheme {
   static const Color _canvasColor = Color(0xFFF5F5F5);
   static const Color _primaryColor = Color(0xFF011E38);
   static const Color _secondaryColor = Color(0xFF264FEC);

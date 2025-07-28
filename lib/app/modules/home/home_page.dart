@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:catalogo_produto_poc/app/core/constants/rotas.dart';
+import 'package:catalogo_produto_poc/app/core/ui/app_routes.dart';
 import 'package:catalogo_produto_poc/app/core/ui/theme_extensions.dart';
 import 'package:catalogo_produto_poc/app/core/widget/widget_drawer.dart';
 import 'package:catalogo_produto_poc/app/core/widget/widget_about_page.dart';
@@ -73,7 +73,7 @@ class _HomePageState extends State<HomePage> {
               final quantidade = state.items.length;
               return IconButton(
                 onPressed: () {
-                  Navigator.of(context).pushNamed(Rotas.carrinho);
+                  AppRoutes.goToCarrinho(context);
                 },
                 padding: const EdgeInsets.all(12.0),
                 icon: quantidade > 0

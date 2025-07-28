@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:catalogo_produto_poc/app/core/models/produto.dart';
 import 'package:catalogo_produto_poc/app/core/ui/theme_extensions.dart';
-import 'package:catalogo_produto_poc/app/core/constants/rotas.dart';
+import 'package:catalogo_produto_poc/app/core/ui/app_routes.dart';
 import 'package:catalogo_produto_poc/app/core/ui/format_currency.dart';
 import 'package:catalogo_produto_poc/app/core/ui/localization_extension.dart';
 import 'package:catalogo_produto_poc/app/modules/carrinho/cubit/carrinho_controller.dart';
@@ -51,11 +51,10 @@ class _ProdutoGridItemState extends State<ProdutoGridItem> {
           ),
         ),
         child: GestureDetector(
-          onTap: () {
-            Navigator.of(
-              context,
-            ).pushNamed(Rotas.produtoDetail, arguments: widget._produto);
-          },
+          onTap: () => AppRoutes.goToProdutoDetail(
+            context: context,
+            produto: widget._produto,
+          ),
           child: Hero(
             tag: widget._produto.id,
             child:
