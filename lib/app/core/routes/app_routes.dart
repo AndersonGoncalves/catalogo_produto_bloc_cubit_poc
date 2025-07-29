@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:catalogo_produto_poc/app/core/models/produto.dart';
-import 'package:catalogo_produto_poc/app/core/routes/app_routes_consts.dart';
 import 'package:catalogo_produto_poc/app/modules/home/roteador_page.dart';
 import 'package:catalogo_produto_poc/app/core/widget/widget_error_page.dart';
 import 'package:catalogo_produto_poc/app/core/widget/widget_about_page.dart';
+import 'package:catalogo_produto_poc/app/core/routes/app_routes_consts.dart';
 import 'package:catalogo_produto_poc/app/core/widget/widget_perfil_page.dart';
+import 'package:catalogo_produto_poc/app/modules/pedido/page/pedido_page.dart';
 import 'package:catalogo_produto_poc/app/modules/produto/page/produto_page.dart';
 import 'package:catalogo_produto_poc/app/modules/carrinho/page/carrinho_page.dart';
 import 'package:catalogo_produto_poc/app/modules/produto/page/produto_form_page.dart';
@@ -16,6 +17,7 @@ class AppRoutes {
     AppRoutesConsts.about: (_) => const WidgetAboutPage(),
     AppRoutesConsts.perfil: (_) => const WidgetPerfilPage(),
     AppRoutesConsts.carrinho: (_) => const CarrinhoPage(),
+    AppRoutesConsts.pedidoList: (_) => const PedidoPage(),
     AppRoutesConsts.produtoList: (_) =>
         const ProdutoPage(produtoPageMode: ProdutoPageMode.list),
     AppRoutesConsts.produtoGrid: (_) =>
@@ -44,6 +46,10 @@ class AppRoutes {
 
   static Future<void> goToPerfil(BuildContext context) {
     return Navigator.of(context).popAndPushNamed(AppRoutesConsts.perfil);
+  }
+
+  static Future<void> goToPedidoList(BuildContext context) {
+    return Navigator.of(context).popAndPushNamed(AppRoutesConsts.pedidoList);
   }
 
   static Future<void> goToProdutoList(BuildContext context) {

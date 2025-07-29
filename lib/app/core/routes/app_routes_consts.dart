@@ -3,6 +3,7 @@ class AppRoutesConsts {
   static const perfil = '/perfil';
   static const about = '/about';
   static const carrinho = '/carrinho';
+  static const pedidoList = '/pedido/list';
   static const produtoList = '/produto/list';
   static const produtoGrid = '/produto/grid';
   static const produtoForm = '/produto/form';

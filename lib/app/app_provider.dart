@@ -40,7 +40,6 @@ class AppBlocProvider extends StatelessWidget {
           create: (context) {
             final usuarioController = context.read<UsuarioController>();
             final currentUser = usuarioController.user;
-
             return ProdutoController(
               produtoService: ProdutoServiceImpl(
                 produtoRepository: ProdutoRepositoryImpl(
@@ -57,7 +56,6 @@ class AppBlocProvider extends StatelessWidget {
           create: (context) {
             final usuarioController = context.read<UsuarioController>();
             final currentUser = usuarioController.user;
-
             return PedidoController(
               pedidoService: PedidoServiceImpl(
                 pedidoRepository: PedidoRepositoryImpl(
