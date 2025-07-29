@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:catalogo_produto_poc/app/core/ui/app_routes.dart';
-import 'package:catalogo_produto_poc/app/core/constants/rotas.dart';
+import 'package:catalogo_produto_poc/app/core/routes/app_routes.dart';
+import 'package:catalogo_produto_poc/app/core/routes/app_routes_consts.dart';
 import 'package:catalogo_produto_poc/app/core/ui/app_theme.dart';
 import 'package:catalogo_produto_poc/app/core/l10n/app_localizations.dart';
 
@@ -36,7 +36,7 @@ class _AppWidgetState extends State<AppWidget> {
       // title: AppLocalizations.of(context)!.catalogoDeProdutos,
       theme: AppTheme.theme,
       debugShowCheckedModeBanner: false,
-      initialRoute: Rotas.home,
+      initialRoute: AppRoutesConsts.home,
       routes: AppRoutes.routes,
       onUnknownRoute: AppRoutes.onUnknownRoute,
     );

@@ -34,8 +34,8 @@ class _ProdutoFormPageState extends State<ProdutoFormPage> {
   final _descricaoFocus = FocusNode();
   final _quantidadeEmEstoqueFocus = FocusNode();
   final _codigoBarrasFocus = FocusNode();
-  late final MoneyMaskedTextController _precoCustoController;
-  late final MoneyMaskedTextController _precoVendaController;
+  late MoneyMaskedTextController _precoCustoController;
+  late MoneyMaskedTextController _precoVendaController;
   final _quantidadeEmEstoqueController = TextEditingController();
   final _codeBarController = TextEditingController();
 
@@ -114,16 +114,10 @@ class _ProdutoFormPageState extends State<ProdutoFormPage> {
   }
 
   @override
-  void initState() {
-    super.initState();
-
-    _precoCustoController = FormatCurrencyInput.currency();
-    _precoVendaController = FormatCurrencyInput.currency();
-  }
-
-  @override
   void didChangeDependencies() {
     super.didChangeDependencies();
+    _precoCustoController = FormatCurrencyInput.currency(context: context);
+    _precoVendaController = FormatCurrencyInput.currency(context: context);
 
     if (_formData.isEmpty) {
       final arg = ModalRoute.of(context)?.settings.arguments;

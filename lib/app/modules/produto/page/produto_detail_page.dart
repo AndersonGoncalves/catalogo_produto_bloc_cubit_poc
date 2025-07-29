@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:catalogo_produto_poc/app/core/ui/messages.dart';
 import 'package:catalogo_produto_poc/app/core/models/produto.dart';
-import 'package:catalogo_produto_poc/app/core/ui/app_routes.dart';
+import 'package:catalogo_produto_poc/app/core/routes/app_routes.dart';
 import 'package:catalogo_produto_poc/app/core/ui/format_currency.dart';
 import 'package:catalogo_produto_poc/app/core/ui/theme_extensions.dart';
 import 'package:catalogo_produto_poc/app/core/ui/localization_extension.dart';

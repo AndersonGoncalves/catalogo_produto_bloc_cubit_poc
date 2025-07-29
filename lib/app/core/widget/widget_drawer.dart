@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:provider/provider.dart';
-import 'package:catalogo_produto_poc/app/core/ui/app_routes.dart';
+import 'package:catalogo_produto_poc/app/core/routes/app_routes.dart';
 import 'package:catalogo_produto_poc/app/core/widget/widget_dialog.dart';
 import 'package:catalogo_produto_poc/app/core/ui/localization_extension.dart';
 import 'package:catalogo_produto_poc/app/modules/usuario/page/usuario_form_page.dart';

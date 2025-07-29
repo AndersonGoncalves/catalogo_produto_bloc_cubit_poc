@@ -1,4 +1,4 @@
-class Rotas {
+class AppRoutesConsts {
   static const home = '/';
   static const perfil = '/perfil';
   static const about = '/about';

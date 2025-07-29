@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:catalogo_produto_poc/app/core/ui/app_routes.dart';
+import 'package:catalogo_produto_poc/app/core/routes/app_routes.dart';
 import 'package:catalogo_produto_poc/app/core/models/produto.dart';
 import 'package:catalogo_produto_poc/app/core/ui/theme_extensions.dart';
 import 'package:catalogo_produto_poc/app/core/widget/widget_dialog.dart';

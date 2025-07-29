@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:catalogo_produto_poc/app/core/models/produto.dart';
-import 'package:catalogo_produto_poc/app/core/constants/rotas.dart';
+import 'package:catalogo_produto_poc/app/core/routes/app_routes_consts.dart';
 import 'package:catalogo_produto_poc/app/modules/home/roteador_page.dart';
 import 'package:catalogo_produto_poc/app/core/widget/widget_error_page.dart';
 import 'package:catalogo_produto_poc/app/core/widget/widget_about_page.dart';
@@ -12,16 +12,16 @@ import 'package:catalogo_produto_poc/app/modules/produto/page/produto_detail_pag
 
 class AppRoutes {
   static Map<String, WidgetBuilder> get routes => {
-    Rotas.home: (_) => const RoteadorPage(),
-    Rotas.about: (_) => const WidgetAboutPage(),
-    Rotas.perfil: (_) => const WidgetPerfilPage(),
-    Rotas.carrinho: (_) => const CarrinhoPage(),
-    Rotas.produtoList: (_) =>
+    AppRoutesConsts.home: (_) => const RoteadorPage(),
+    AppRoutesConsts.about: (_) => const WidgetAboutPage(),
+    AppRoutesConsts.perfil: (_) => const WidgetPerfilPage(),
+    AppRoutesConsts.carrinho: (_) => const CarrinhoPage(),
+    AppRoutesConsts.produtoList: (_) =>
         const ProdutoPage(produtoPageMode: ProdutoPageMode.list),
-    Rotas.produtoGrid: (_) =>
+    AppRoutesConsts.produtoGrid: (_) =>
         const ProdutoPage(produtoPageMode: ProdutoPageMode.grid),
-    Rotas.produtoForm: (_) => const ProdutoFormPage(),
-    Rotas.produtoDetail: (context) {
+    AppRoutesConsts.produtoForm: (_) => const ProdutoFormPage(),
+    AppRoutesConsts.produtoDetail: (context) {
       final produto = ModalRoute.of(context)!.settings.arguments as Produto;
       return ProdutoDetailPage(produto: produto);
     },
@@ -35,23 +35,23 @@ class AppRoutes {
   }
 
   static Future<void> goToHome(BuildContext context) {
-    return Navigator.of(context).pushReplacementNamed(Rotas.home);
+    return Navigator.of(context).pushReplacementNamed(AppRoutesConsts.home);
   }
 
   static Future<void> goToAbout(BuildContext context) {
-    return Navigator.of(context).popAndPushNamed(Rotas.about);
+    return Navigator.of(context).popAndPushNamed(AppRoutesConsts.about);
   }
 
   static Future<void> goToPerfil(BuildContext context) {
-    return Navigator.of(context).popAndPushNamed(Rotas.perfil);
+    return Navigator.of(context).popAndPushNamed(AppRoutesConsts.perfil);
   }
 
   static Future<void> goToProdutoList(BuildContext context) {
-    return Navigator.of(context).popAndPushNamed(Rotas.produtoList);
+    return Navigator.of(context).popAndPushNamed(AppRoutesConsts.produtoList);
   }
 
   static Future<void> goToCarrinho(BuildContext context) {
-    return Navigator.of(context).pushNamed(Rotas.carrinho);
+    return Navigator.of(context).pushNamed(AppRoutesConsts.carrinho);
   }
 
   static Future<void> goToProdutoForm({
@@ -59,11 +59,11 @@ class AppRoutes {
     Produto? produto,
   }) {
     if (produto == null) {
-      return Navigator.of(context).pushNamed(Rotas.produtoForm);
+      return Navigator.of(context).pushNamed(AppRoutesConsts.produtoForm);
     } else {
       return Navigator.of(
         context,
-      ).pushNamed(Rotas.produtoForm, arguments: produto);
+      ).pushNamed(AppRoutesConsts.produtoForm, arguments: produto);
     }
   }
 
@@ -72,11 +72,11 @@ class AppRoutes {
     Produto? produto,
   }) {
     if (produto == null) {
-      return Navigator.of(context).pushNamed(Rotas.produtoDetail);
+      return Navigator.of(context).pushNamed(AppRoutesConsts.produtoDetail);
     } else {
       return Navigator.of(
         context,
-      ).pushNamed(Rotas.produtoDetail, arguments: produto);
+      ).pushNamed(AppRoutesConsts.produtoDetail, arguments: produto);
     }
   }
 }
