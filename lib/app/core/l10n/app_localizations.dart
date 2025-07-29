@@ -103,8 +103,20 @@ abstract class AppLocalizations {
   /// No description provided for @idioma.
   ///
   /// In pt, this message translates to:
-  /// **'pt_BR'**
+  /// **'pt'**
   String get idioma;
+
+  /// No description provided for @localeCode.
+  ///
+  /// In pt, this message translates to:
+  /// **'pt_BR'**
+  String get localeCode;
+
+  /// No description provided for @currencySymbol.
+  ///
+  /// In pt, this message translates to:
+  /// **'R\$'**
+  String get currencySymbol;
 
   /// No description provided for @catalogoDeProdutos.
   ///
@@ -669,6 +681,36 @@ abstract class AppLocalizations {
   /// In pt, this message translates to:
   /// **'Erro ao criar pedido'**
   String get erroAoCriarPedido;
+
+  /// No description provided for @cancelar.
+  ///
+  /// In pt, this message translates to:
+  /// **'Cancelar'**
+  String get cancelar;
+
+  /// No description provided for @scannerNaoDisponivelWindows.
+  ///
+  /// In pt, this message translates to:
+  /// **'Scanner de código de barras não disponível no Windows'**
+  String get scannerNaoDisponivelWindows;
+
+  /// No description provided for @leituraCodigoBarrasCancelada.
+  ///
+  /// In pt, this message translates to:
+  /// **'Leitura de código de barras cancelada'**
+  String get leituraCodigoBarrasCancelada;
+
+  /// No description provided for @codigoBarrasLidoComSucesso.
+  ///
+  /// In pt, this message translates to:
+  /// **'Código de barras lido com sucesso'**
+  String get codigoBarrasLidoComSucesso;
+
+  /// No description provided for @erroLerCodigoBarras.
+  ///
+  /// In pt, this message translates to:
+  /// **'Erro ao ler código de barras'**
+  String get erroLerCodigoBarras;
 }
 
 class _AppLocalizationsDelegate

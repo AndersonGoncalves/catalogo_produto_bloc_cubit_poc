@@ -12,6 +12,12 @@ class AppLocalizationsEs extends AppLocalizations {
   String get idioma => 'es_ES';
 
   @override
+  String get localeCode => 'es_ES';
+
+  @override
+  String get currencySymbol => '€';
+
+  @override
   String get catalogoDeProdutos => 'Catálogo de Productos';
 
   @override
@@ -300,4 +306,21 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get erroAoCriarPedido => 'Error al crear pedido';
+
+  @override
+  String get cancelar => 'Cancelar';
+
+  @override
+  String get scannerNaoDisponivelWindows =>
+      'Escáner de código de barras no disponible en Windows';
+
+  @override
+  String get leituraCodigoBarrasCancelada =>
+      'Lectura de código de barras cancelada';
+
+  @override
+  String get codigoBarrasLidoComSucesso => 'Código de barras leído con éxito';
+
+  @override
+  String get erroLerCodigoBarras => 'Error al leer código de barras';
 }

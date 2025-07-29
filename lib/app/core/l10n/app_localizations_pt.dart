@@ -9,7 +9,13 @@ class AppLocalizationsPt extends AppLocalizations {
   AppLocalizationsPt([String locale = 'pt']) : super(locale);
 
   @override
-  String get idioma => 'pt_BR';
+  String get idioma => 'pt';
+
+  @override
+  String get localeCode => 'pt_BR';
+
+  @override
+  String get currencySymbol => 'R\$';
 
   @override
   String get catalogoDeProdutos => 'Catálogo de Produtos';
@@ -299,4 +305,21 @@ class AppLocalizationsPt extends AppLocalizations {
 
   @override
   String get erroAoCriarPedido => 'Erro ao criar pedido';
+
+  @override
+  String get cancelar => 'Cancelar';
+
+  @override
+  String get scannerNaoDisponivelWindows =>
+      'Scanner de código de barras não disponível no Windows';
+
+  @override
+  String get leituraCodigoBarrasCancelada =>
+      'Leitura de código de barras cancelada';
+
+  @override
+  String get codigoBarrasLidoComSucesso => 'Código de barras lido com sucesso';
+
+  @override
+  String get erroLerCodigoBarras => 'Erro ao ler código de barras';
 }

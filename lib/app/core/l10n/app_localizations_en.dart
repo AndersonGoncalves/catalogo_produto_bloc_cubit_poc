@@ -12,6 +12,12 @@ class AppLocalizationsEn extends AppLocalizations {
   String get idioma => 'en_US';
 
   @override
+  String get localeCode => 'en_US';
+
+  @override
+  String get currencySymbol => '\$';
+
+  @override
   String get catalogoDeProdutos => 'Product Catalog';
 
   @override
@@ -299,4 +305,20 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get erroAoCriarPedido => 'Error creating order';
+
+  @override
+  String get cancelar => 'Cancel';
+
+  @override
+  String get scannerNaoDisponivelWindows =>
+      'Barcode scanner not available on Windows';
+
+  @override
+  String get leituraCodigoBarrasCancelada => 'Barcode reading cancelled';
+
+  @override
+  String get codigoBarrasLidoComSucesso => 'Barcode read successfully';
+
+  @override
+  String get erroLerCodigoBarras => 'Error reading barcode';
 }

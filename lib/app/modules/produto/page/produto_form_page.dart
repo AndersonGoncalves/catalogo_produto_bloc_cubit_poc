@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:validatorless/validatorless.dart';
+import 'package:flutter_masked_text2/flutter_masked_text2.dart';
 import 'package:catalogo_produto_poc/app/core/ui/messages.dart';
 import 'package:catalogo_produto_poc/app/core/ui/functions.dart';
 import 'package:catalogo_produto_poc/app/core/models/produto.dart';
 import 'package:catalogo_produto_poc/app/core/ui/theme_extensions.dart';
+import 'package:catalogo_produto_poc/app/core/ui/format_currency_input.dart';
 import 'package:catalogo_produto_poc/app/core/widget/widget_loading_page.dart';
 import 'package:catalogo_produto_poc/app/core/ui/localization_extension.dart';
 import 'package:catalogo_produto_poc/app/core/widget/widget_text_form_field.dart';
-import 'package:currency_text_input_formatter/currency_text_input_formatter.dart';
 import 'package:catalogo_produto_poc/app/modules/produto/cubit/produto_state.dart';
 import 'package:catalogo_produto_poc/app/modules/produto/page/produto_foto_grid.dart';
 import 'package:catalogo_produto_poc/app/modules/produto/cubit/produto_controller.dart';
@@ -33,22 +34,10 @@ class _ProdutoFormPageState extends State<ProdutoFormPage> {
   final _descricaoFocus = FocusNode();
   final _quantidadeEmEstoqueFocus = FocusNode();
   final _codigoBarrasFocus = FocusNode();
-  final _precoCustoController = TextEditingController();
-  final _precoVendaController = TextEditingController();
+  late final MoneyMaskedTextController _precoCustoController;
+  late final MoneyMaskedTextController _precoVendaController;
   final _quantidadeEmEstoqueController = TextEditingController();
   final _codeBarController = TextEditingController();
-
-  CurrencyTextInputFormatter currencyTextInputFormatter(
-    BuildContext context, {
-    int decimalDigits = 2,
-  }) {
-    return CurrencyTextInputFormatter.currency(
-      locale: 'pt_BR',
-      symbol: 'R\$',
-      decimalDigits: decimalDigits,
-      turnOffGrouping: true,
-    );
-  }
 
   void _setValoresInicial() {
     _formData['id'] = '';
@@ -122,6 +111,14 @@ class _ProdutoFormPageState extends State<ProdutoFormPage> {
       _formKey.currentState?.save();
       await context.read<ProdutoController>().save(_formData);
     }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+
+    _precoCustoController = FormatCurrencyInput.currency();
+    _precoVendaController = FormatCurrencyInput.currency();
   }
 
   @override
@@ -324,11 +321,6 @@ class _ProdutoFormPageState extends State<ProdutoFormPage> {
                                                     textInputAction:
                                                         TextInputAction.next,
                                                     focusNode: _precoCustoFocus,
-                                                    inputFormatters: [
-                                                      currencyTextInputFormatter(
-                                                        context,
-                                                      ),
-                                                    ],
                                                     controller:
                                                         _precoCustoController,
 
@@ -369,11 +361,6 @@ class _ProdutoFormPageState extends State<ProdutoFormPage> {
                                                     suffixIconOnPressed:
                                                         _calcularPrecoVenda,
                                                     focusNode: _precoVendaFocus,
-                                                    inputFormatters: [
-                                                      currencyTextInputFormatter(
-                                                        context,
-                                                      ),
-                                                    ],
                                                     controller:
                                                         _precoVendaController,
                                                     validator:

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:catalogo_produto_poc/app/core/ui/functions.dart';
+import 'package:flutter_masked_text2/flutter_masked_text2.dart';
 import 'package:catalogo_produto_poc/app/core/ui/format_currency.dart';
+import 'package:catalogo_produto_poc/app/core/ui/format_currency_input.dart';
 import 'package:catalogo_produto_poc/app/core/ui/localization_extension.dart';
 import 'package:catalogo_produto_poc/app/core/widget/widget_text_form_field.dart';
 
@@ -23,8 +25,8 @@ class ProdutoCalculadoraPrecoPage extends StatefulWidget {
 
 class ProdutotCalculadoraPrecoPageState
     extends State<ProdutoCalculadoraPrecoPage> {
-  final _precoCustoController = TextEditingController();
-  final _markupController = TextEditingController();
+  late MoneyMaskedTextController _precoCustoController;
+  late MoneyMaskedTextController _markupController;
 
   double precoVendaTemp = 0;
   var _precoCustoText = '';
@@ -68,6 +70,9 @@ class ProdutotCalculadoraPrecoPageState
   void initState() {
     super.initState();
 
+    _markupController = FormatCurrencyInput.percentage();
+    _precoCustoController = FormatCurrencyInput.currency();
+
     _precoCustoController.text = widget.precoCusto.toStringAsFixed(2);
     _markupController.text = percentualMarkup(
       widget.precoCusto,
@@ -97,6 +102,25 @@ class ProdutotCalculadoraPrecoPageState
       _markupController.text = widget.precoVenda.toStringAsFixed(2);
       _markupText = widget.precoVenda.toStringAsFixed(2);
     }
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+
+    final currentText = _precoCustoController.text;
+    _precoCustoController = FormatCurrencyInput.currency(context: context);
+    _precoCustoController.text = currentText;
+    _precoCustoController.addListener(_changePrecoCusto);
+  }
+
+  @override
+  void dispose() {
+    _precoCustoController.removeListener(_changePrecoCusto);
+    _markupController.removeListener(_changeMarkup);
+    _precoCustoController.dispose();
+    _markupController.dispose();
+    super.dispose();
   }
 
   @override

@@ -1,4 +1,10 @@
 {
+    "idioma": "en",
+    "localeCode": "en_US",
+    "currencySymbol": "$",
+    "catalogoDeProdutos": "Product Catalog",
+    "produto": "Product",
+    "produtos": "Products",
     "idioma": "en_US",
     "catalogoDeProdutos": "Product Catalog",
     "produto": "Product",
@@ -94,5 +100,10 @@
     "nenhumPedidoEncontrado": "No order found",
     "home": "Home",
     "pedidoCriadoComSucesso": "Order created successfully!",
-    "erroAoCriarPedido": "Error creating order"
+    "erroAoCriarPedido": "Error creating order",
+    "cancelar": "Cancel",
+    "scannerNaoDisponivelWindows": "Barcode scanner not available on Windows",
+    "leituraCodigoBarrasCancelada": "Barcode reading cancelled",
+    "codigoBarrasLidoComSucesso": "Barcode read successfully",
+    "erroLerCodigoBarras": "Error reading barcode"
 }

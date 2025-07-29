@@ -1,5 +1,7 @@
 {
     "idioma": "es_ES",
+    "localeCode": "es_ES",
+    "currencySymbol": "€",
     "catalogoDeProdutos": "Catálogo de Productos",
     "produto": "Producto",
     "produtos": "Productos",
@@ -94,5 +96,10 @@
     "nenhumPedidoEncontrado": "Ningún pedido encontrado",
     "home": "Inicio",
     "pedidoCriadoComSucesso": "¡Pedido creado con éxito!",
-    "erroAoCriarPedido": "Error al crear pedido"
+    "erroAoCriarPedido": "Error al crear pedido",
+    "cancelar": "Cancelar",
+    "scannerNaoDisponivelWindows": "Escáner de código de barras no disponible en Windows",
+    "leituraCodigoBarrasCancelada": "Lectura de código de barras cancelada",
+    "codigoBarrasLidoComSucesso": "Código de barras leído con éxito",
+    "erroLerCodigoBarras": "Error al leer código de barras"
 }
