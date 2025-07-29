@@ -7,7 +7,7 @@ import 'package:catalogo_produto_poc/app/core/ui/format_currency.dart';
 import 'package:catalogo_produto_poc/app/core/ui/theme_extensions.dart';
 import 'package:catalogo_produto_poc/app/core/ui/localization_extension.dart';
 import 'package:catalogo_produto_poc/app/modules/produto/cubit/produto_state.dart';
-import 'package:catalogo_produto_poc/app/modules/carrinho/page/carrinho_badgee.dart';
+import 'package:catalogo_produto_poc/app/modules/carrinho/pages/carrinho_badgee.dart';
 import 'package:catalogo_produto_poc/app/modules/carrinho/cubit/carrinho_state.dart';
 import 'package:catalogo_produto_poc/app/modules/produto/cubit/produto_controller.dart';
 import 'package:catalogo_produto_poc/app/modules/carrinho/cubit/carrinho_controller.dart';

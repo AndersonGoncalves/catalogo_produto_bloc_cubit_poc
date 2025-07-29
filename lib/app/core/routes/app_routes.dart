@@ -5,11 +5,11 @@ import 'package:catalogo_produto_poc/app/core/widget/widget_error_page.dart';
 import 'package:catalogo_produto_poc/app/core/widget/widget_about_page.dart';
 import 'package:catalogo_produto_poc/app/core/routes/app_routes_consts.dart';
 import 'package:catalogo_produto_poc/app/core/widget/widget_perfil_page.dart';
-import 'package:catalogo_produto_poc/app/modules/pedido/page/pedido_page.dart';
-import 'package:catalogo_produto_poc/app/modules/produto/page/produto_page.dart';
-import 'package:catalogo_produto_poc/app/modules/carrinho/page/carrinho_page.dart';
-import 'package:catalogo_produto_poc/app/modules/produto/page/produto_form_page.dart';
-import 'package:catalogo_produto_poc/app/modules/produto/page/produto_detail_page.dart';
+import 'package:catalogo_produto_poc/app/modules/pedido/pages/pedido_page.dart';
+import 'package:catalogo_produto_poc/app/modules/produto/pages/produto_page.dart';
+import 'package:catalogo_produto_poc/app/modules/carrinho/pages/carrinho_page.dart';
+import 'package:catalogo_produto_poc/app/modules/produto/pages/produto_form_page.dart';
+import 'package:catalogo_produto_poc/app/modules/produto/pages/produto_detail_page.dart';
 
 class AppRoutes {
   static Map<String, WidgetBuilder> get routes => {

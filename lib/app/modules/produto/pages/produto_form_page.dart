@@ -11,9 +11,9 @@ import 'package:catalogo_produto_poc/app/core/widget/widget_loading_page.dart';
 import 'package:catalogo_produto_poc/app/core/ui/localization_extension.dart';
 import 'package:catalogo_produto_poc/app/core/widget/widget_text_form_field.dart';
 import 'package:catalogo_produto_poc/app/modules/produto/cubit/produto_state.dart';
-import 'package:catalogo_produto_poc/app/modules/produto/page/produto_foto_grid.dart';
+import 'package:catalogo_produto_poc/app/modules/produto/pages/produto_foto_grid.dart';
 import 'package:catalogo_produto_poc/app/modules/produto/cubit/produto_controller.dart';
-import 'package:catalogo_produto_poc/app/modules/produto/page/produto_calculadora_preco_page.dart';
+import 'package:catalogo_produto_poc/app/modules/produto/pages/produto_calculadora_preco_page.dart';
 
 class ProdutoFormPage extends StatefulWidget {
   const ProdutoFormPage({super.key});
@@ -237,8 +237,8 @@ class _ProdutoFormPageState extends State<ProdutoFormPage> {
                                                     begin: Alignment.topCenter,
                                                     end: Alignment.bottomCenter,
                                                     colors: [
-                                                      Colors.black.withOpacity(
-                                                        0.3,
+                                                      Colors.black.withAlpha(
+                                                        77,
                                                       ),
                                                       Colors.transparent,
                                                     ],

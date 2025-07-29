@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:catalogo_produto_poc/app/core/ui/app_theme.dart';
 import 'package:catalogo_produto_poc/app/core/routes/app_routes.dart';
-import 'package:catalogo_produto_poc/app/core/l10n/app_localizations.dart';
+import 'package:catalogo_produto_poc/app/core/l10n/localizations/app_localizations.dart';
 import 'package:catalogo_produto_poc/app/core/routes/app_routes_consts.dart';
 
 class AppWidget extends StatefulWidget {

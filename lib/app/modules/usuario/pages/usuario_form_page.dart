@@ -199,6 +199,7 @@ class UsuariohFormPageState extends State<UsuarioFormPage>
                                             _isLogin
                                                 ? const SizedBox()
                                                 : WidgetTextFormField(
+                                                    key: const Key('nome_key'),
                                                     labelText: context
                                                         .localizations
                                                         .nome,
@@ -245,6 +246,7 @@ class UsuariohFormPageState extends State<UsuarioFormPage>
                                                       value ?? '',
                                             ),
                                             WidgetTextFormField(
+                                              key: const Key('senha_key'),
                                               labelText:
                                                   context.localizations.senha,
                                               prefixIcon: const Icon(
@@ -420,14 +422,18 @@ class UsuariohFormPageState extends State<UsuarioFormPage>
                                                             _emailController
                                                                 .text,
                                                           );
-                                                      Messages.of(context).info(
-                                                        Text(
-                                                          context
-                                                              .localizations
-                                                              .recuperacaoDeSenhaEnviadaParaEmailInformado,
-                                                        ),
-                                                        context.primaryColor,
-                                                      );
+                                                      if (context.mounted) {
+                                                        Messages.of(
+                                                          context,
+                                                        ).info(
+                                                          Text(
+                                                            context
+                                                                .localizations
+                                                                .recuperacaoDeSenhaEnviadaParaEmailInformado,
+                                                          ),
+                                                          context.primaryColor,
+                                                        );
+                                                      }
                                                     },
                                                   )
                                                 : SizedBox.shrink(),

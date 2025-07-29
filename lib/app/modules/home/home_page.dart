@@ -5,14 +5,14 @@ import 'package:catalogo_produto_poc/app/core/ui/theme_extensions.dart';
 import 'package:catalogo_produto_poc/app/core/widget/widget_drawer.dart';
 import 'package:catalogo_produto_poc/app/core/widget/widget_about_page.dart';
 import 'package:catalogo_produto_poc/app/core/ui/localization_extension.dart';
-import 'package:catalogo_produto_poc/app/modules/pedido/page/pedido_page.dart';
-import 'package:catalogo_produto_poc/app/modules/produto/page/produto_page.dart';
-import 'package:catalogo_produto_poc/app/modules/carrinho/page/carrinho_badgee.dart';
+import 'package:catalogo_produto_poc/app/modules/pedido/pages/pedido_page.dart';
+import 'package:catalogo_produto_poc/app/modules/produto/pages/produto_page.dart';
+import 'package:catalogo_produto_poc/app/modules/carrinho/pages/carrinho_badgee.dart';
 import 'package:catalogo_produto_poc/app/modules/carrinho/cubit/carrinho_state.dart';
 import 'package:catalogo_produto_poc/app/modules/pedido/cubit/pedido_controller.dart';
 import 'package:catalogo_produto_poc/app/modules/usuario/cubit/usuario_controller.dart';
 import 'package:catalogo_produto_poc/app/modules/carrinho/cubit/carrinho_controller.dart';
-import 'package:catalogo_produto_poc/app/modules/produto/page/produto_favoritos_page.dart';
+import 'package:catalogo_produto_poc/app/modules/produto/pages/produto_favoritos_page.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});

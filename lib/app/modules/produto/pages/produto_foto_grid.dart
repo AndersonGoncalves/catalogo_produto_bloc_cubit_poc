@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:catalogo_produto_poc/app/modules/produto/page/produto_foto_page.dart';
+import 'package:catalogo_produto_poc/app/modules/produto/pages/produto_foto_page.dart';
 
 class ProdutoFotoGrid extends StatefulWidget {
   final String label;

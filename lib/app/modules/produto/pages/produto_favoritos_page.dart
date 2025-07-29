@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:catalogo_produto_poc/app/core/ui/theme_extensions.dart';
 import 'package:catalogo_produto_poc/app/core/ui/localization_extension.dart';
 import 'package:catalogo_produto_poc/app/core/widget/widget_loading_page.dart';
-import 'package:catalogo_produto_poc/app/modules/produto/page/produto_grid.dart';
+import 'package:catalogo_produto_poc/app/modules/produto/pages/produto_grid.dart';
 import 'package:catalogo_produto_poc/app/modules/produto/cubit/produto_state.dart';
 import 'package:catalogo_produto_poc/app/modules/produto/cubit/produto_controller.dart';
 
@@ -47,7 +47,7 @@ class _ProdutoFavoritosPageState extends State<ProdutoFavoritosPage> {
                     height: 64,
                     width: double.infinity,
                     padding: const EdgeInsets.all(16),
-                    color: context.primaryColor.withOpacity(0.1),
+                    color: context.primaryColor.withAlpha(26),
                     child: Align(
                       alignment: Alignment.centerLeft,
                       child: Text(

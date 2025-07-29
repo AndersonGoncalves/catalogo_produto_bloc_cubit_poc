@@ -5,11 +5,10 @@ import 'package:catalogo_produto_poc/app/core/models/produto.dart';
 import 'package:catalogo_produto_poc/app/core/routes/app_routes.dart';
 import 'package:catalogo_produto_poc/app/core/ui/theme_extensions.dart';
 import 'package:catalogo_produto_poc/app/core/widget/widget_pesquisa.dart';
-import 'package:catalogo_produto_poc/app/core/l10n/app_localizations.dart';
 import 'package:catalogo_produto_poc/app/core/widget/widget_loading_page.dart';
 import 'package:catalogo_produto_poc/app/core/ui/localization_extension.dart';
-import 'package:catalogo_produto_poc/app/modules/produto/page/produto_list.dart';
-import 'package:catalogo_produto_poc/app/modules/produto/page/produto_grid.dart';
+import 'package:catalogo_produto_poc/app/modules/produto/pages/produto_list.dart';
+import 'package:catalogo_produto_poc/app/modules/produto/pages/produto_grid.dart';
 import 'package:catalogo_produto_poc/app/modules/produto/cubit/produto_state.dart';
 import 'package:catalogo_produto_poc/app/modules/produto/cubit/produto_controller.dart';
 
@@ -97,7 +96,7 @@ class _ProdutoPageState extends State<ProdutoPage> {
                   title: Padding(
                     padding: const EdgeInsets.only(bottom: 2),
                     child: Text(
-                      AppLocalizations.of(context)!.produtos,
+                      context.localizations.produtos,
                       style: const TextStyle(color: Colors.white),
                     ),
                   ),

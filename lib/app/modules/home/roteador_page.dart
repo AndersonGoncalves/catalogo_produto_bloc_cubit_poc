@@ -6,7 +6,7 @@ import 'package:catalogo_produto_poc/app/core/ui/theme_extensions.dart';
 import 'package:catalogo_produto_poc/app/core/ui/localization_extension.dart';
 import 'package:catalogo_produto_poc/app/core/widget/widget_loading_page.dart';
 import 'package:catalogo_produto_poc/app/modules/usuario/cubit/usuario_controller.dart';
-import 'package:catalogo_produto_poc/app/modules/usuario/page/usuario_form_page.dart';
+import 'package:catalogo_produto_poc/app/modules/usuario/pages/usuario_form_page.dart';
 
 class RoteadorPage extends StatelessWidget {
   const RoteadorPage({super.key});

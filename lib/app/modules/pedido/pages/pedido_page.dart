@@ -147,7 +147,7 @@ class _PedidoPageState extends State<PedidoPage> {
                     height: 64,
                     width: double.infinity,
                     padding: const EdgeInsets.all(16),
-                    color: context.primaryColor.withOpacity(0.1),
+                    color: context.primaryColor.withAlpha(26),
                     child: Align(
                       alignment: Alignment.centerLeft,
                       child: Text(

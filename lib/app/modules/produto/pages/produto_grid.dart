@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:catalogo_produto_poc/app/core/models/produto.dart';
-import 'package:catalogo_produto_poc/app/modules/produto/page/produto_grid_item.dart';
+import 'package:catalogo_produto_poc/app/modules/produto/pages/produto_grid_item.dart';
 import 'package:catalogo_produto_poc/app/modules/produto/cubit/produto_controller.dart';
 import 'package:catalogo_produto_poc/app/core/widget/widget_registro_nao_encontrado_page.dart';
 

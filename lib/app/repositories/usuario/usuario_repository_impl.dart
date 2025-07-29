@@ -153,6 +153,7 @@ class UsuarioRepositoryImpl implements UsuarioRepository {
       final loginMethods = await _firebaseAuth.fetchSignInMethodsForEmail(
         email,
       );
+
       if (loginMethods.contains('password')) {
         await _firebaseAuth.sendPasswordResetEmail(email: email);
       } else if (loginMethods.contains('google')) {

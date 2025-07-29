@@ -1,5 +1,5 @@
 import 'package:catalogo_produto_poc/app/modules/usuario/cubit/usuario_controller.dart';
-import 'package:catalogo_produto_poc/app/modules/usuario/page/usuario_form_page.dart';
+import 'package:catalogo_produto_poc/app/modules/usuario/pages/usuario_form_page.dart';
 import 'package:catalogo_produto_poc/app/repositories/usuario/usuario_repository.dart';
 import 'package:catalogo_produto_poc/app/services/usuario/usuario_service_impl.dart';
 import 'package:firebase_auth/firebase_auth.dart';
