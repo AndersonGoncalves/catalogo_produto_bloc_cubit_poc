@@ -323,7 +323,7 @@ class _ProdutoDetailPageState extends State<ProdutoDetailPage> {
 
                 if (widget.produto.fotos != null &&
                     widget.produto.fotos!.length > 1)
-                  _buildImageIndicator(),
+                  Hero(tag: widget.produto.id, child: _buildImageIndicator()),
 
                 const SizedBox(height: 20),
 
