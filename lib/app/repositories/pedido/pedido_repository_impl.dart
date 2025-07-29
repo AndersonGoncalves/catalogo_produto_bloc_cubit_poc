@@ -1,5 +1,5 @@
 import 'package:dio/dio.dart';
-import 'package:catalogo_produto_poc/app/core/constants/url.dart';
+import 'package:catalogo_produto_poc/app/core/ui/url_consts.dart';
 import 'package:catalogo_produto_poc/app/core/models/pedido.dart';
 import 'package:catalogo_produto_poc/app/core/exceptions/http_exception.dart';
 import 'package:catalogo_produto_poc/app/repositories/pedido/pedido_repository.dart';
@@ -23,7 +23,7 @@ class PedidoRepositoryImpl implements PedidoRepository {
   Future<void> get() async {
     try {
       final response = await _dio.get(
-        '${Url.firebase(userId: _userId).pedido}.json',
+        '${UrlConsts.firebase(userId: _userId).pedido}.json',
         queryParameters: {'auth': _token},
       );
 
@@ -49,7 +49,7 @@ class PedidoRepositoryImpl implements PedidoRepository {
   Future<void> post(Pedido pedido) async {
     try {
       final response = await _dio.post(
-        '${Url.firebase(userId: _userId).pedido}.json',
+        '${UrlConsts.firebase(userId: _userId).pedido}.json',
         queryParameters: {'auth': _token},
         data: pedido.toMap(),
         options: Options(headers: {'Content-Type': 'application/json'}),
@@ -72,7 +72,7 @@ class PedidoRepositoryImpl implements PedidoRepository {
   Future<void> patch(Pedido pedido) async {
     try {
       await _dio.patch(
-        '${Url.firebase(userId: _userId).pedido}/${pedido.id}.json',
+        '${UrlConsts.firebase(userId: _userId).pedido}/${pedido.id}.json',
         queryParameters: {'auth': _token},
         data: pedido.toMap(),
         options: Options(headers: {'Content-Type': 'application/json'}),
@@ -96,7 +96,7 @@ class PedidoRepositoryImpl implements PedidoRepository {
   Future<void> delete(Pedido pedido) async {
     try {
       await _dio.delete(
-        '${Url.firebase(userId: _userId).pedido}/${pedido.id}.json',
+        '${UrlConsts.firebase(userId: _userId).pedido}/${pedido.id}.json',
         queryParameters: {'auth': _token},
       );
 

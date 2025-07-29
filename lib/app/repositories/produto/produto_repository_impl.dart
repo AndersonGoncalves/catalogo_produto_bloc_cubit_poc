@@ -1,5 +1,5 @@
 import 'package:dio/dio.dart';
-import 'package:catalogo_produto_poc/app/core/constants/url.dart';
+import 'package:catalogo_produto_poc/app/core/ui/url_consts.dart';
 import 'package:catalogo_produto_poc/app/core/models/produto.dart';
 import 'package:catalogo_produto_poc/app/core/exceptions/http_exception.dart';
 import 'package:catalogo_produto_poc/app/repositories/produto/produto_repository.dart';
@@ -30,7 +30,7 @@ class ProdutoRepositoryImpl implements ProdutoRepository {
       if (index != -1) {
         _produtos[index] = _produtos[index].copyWith(isFavorito: isFavorito);
         await _dio.patch(
-          '${Url.firebase().produto}/$produtoId.json',
+          '${UrlConsts.firebase().produto}/$produtoId.json',
           queryParameters: {'auth': _token},
           data: {'isFavorito': isFavorito},
           options: Options(headers: {'Content-Type': 'application/json'}),
@@ -64,7 +64,7 @@ class ProdutoRepositoryImpl implements ProdutoRepository {
   Future<void> get() async {
     _produtos.clear();
     final response = await _dio.get(
-      '${Url.firebase().produto}.json?auth=$_token',
+      '${UrlConsts.firebase().produto}.json?auth=$_token',
     );
     if (response.data == null) return;
     Map<String, dynamic> data = response.data;
@@ -77,7 +77,7 @@ class ProdutoRepositoryImpl implements ProdutoRepository {
   @override
   Future<void> post(Produto model) async {
     final response = await _dio.post(
-      '${Url.firebase().produto}.json?auth=$_token',
+      '${UrlConsts.firebase().produto}.json?auth=$_token',
       data: model.toJson(),
     );
     final id = response.data['name'];
@@ -89,7 +89,7 @@ class ProdutoRepositoryImpl implements ProdutoRepository {
     int index = _produtos.indexWhere((p) => p.id == model.id);
     if (index >= 0) {
       await _dio.patch(
-        '${Url.firebase().produto}/${model.id}.json?auth=$_token',
+        '${UrlConsts.firebase().produto}/${model.id}.json?auth=$_token',
         data: model.toJson(),
       );
       _produtos[index] = model;
@@ -105,7 +105,7 @@ class ProdutoRepositoryImpl implements ProdutoRepository {
 
       try {
         await _dio.delete(
-          '${Url.firebase().produto}/${model.id}.json?auth=$_token',
+          '${UrlConsts.firebase().produto}/${model.id}.json?auth=$_token',
           data: model.toJson(),
         );
       } catch (e) {
