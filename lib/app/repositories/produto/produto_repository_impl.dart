@@ -62,62 +62,101 @@ class ProdutoRepositoryImpl implements ProdutoRepository {
 
   @override
   Future<void> get() async {
-    _produtos.clear();
-    final response = await _dio.get(
-      '${UrlConsts.firebase().produto}.json?auth=$_token',
-    );
-    if (response.data == null) return;
-    Map<String, dynamic> data = response.data;
-    data.forEach((modelId, modelData) {
-      modelData['id'] = modelId;
-      _produtos.add(Produto.fromMap(modelData));
-    });
+    try {
+      _produtos.clear();
+      final response = await _dio.get(
+        '${UrlConsts.firebase().produto}.json?auth=$_token',
+      );
+      if (response.data == null) return;
+      Map<String, dynamic> data = response.data;
+      data.forEach((modelId, modelData) {
+        modelData['id'] = modelId;
+        _produtos.add(Produto.fromMap(modelData));
+      });
+    } on DioException catch (e) {
+      throw HttpException(
+        msg: 'Erro ao carregar produtos',
+        statusCode: e.response?.statusCode ?? 500,
+      );
+    } catch (e) {
+      throw HttpException(
+        msg: 'Erro ao carregar produtos: $e',
+        statusCode: 500,
+      );
+    }
   }
 
   @override
   Future<void> post(Produto model) async {
-    final response = await _dio.post(
-      '${UrlConsts.firebase().produto}.json?auth=$_token',
-      data: model.toJson(),
-    );
-    final id = response.data['name'];
-    _produtos.add(model.copyWith(id: id));
+    try {
+      final response = await _dio.post(
+        '${UrlConsts.firebase().produto}.json?auth=$_token',
+        data: model.toJson(),
+      );
+      final id = response.data['name'];
+      _produtos.add(model.copyWith(id: id));
+    } on DioException catch (e) {
+      throw HttpException(
+        msg: 'Erro ao salvar produto',
+        statusCode: e.response?.statusCode ?? 500,
+      );
+    } catch (e) {
+      throw HttpException(msg: 'Erro ao salvar produto: $e', statusCode: 500);
+    }
   }
 
   @override
   Future<void> patch(Produto model) async {
-    int index = _produtos.indexWhere((p) => p.id == model.id);
-    if (index >= 0) {
-      await _dio.patch(
-        '${UrlConsts.firebase().produto}/${model.id}.json?auth=$_token',
-        data: model.toJson(),
+    try {
+      int index = _produtos.indexWhere((p) => p.id == model.id);
+      if (index >= 0) {
+        await _dio.patch(
+          '${UrlConsts.firebase().produto}/${model.id}.json?auth=$_token',
+          data: model.toJson(),
+        );
+        _produtos[index] = model;
+      }
+    } on DioException catch (e) {
+      throw HttpException(
+        msg: 'Erro ao alterar produto',
+        statusCode: e.response?.statusCode ?? 500,
       );
-      _produtos[index] = model;
+    } catch (e) {
+      throw HttpException(msg: 'Erro ao alterar produto: $e', statusCode: 500);
     }
   }
 
   @override
   Future<void> delete(Produto model) async {
-    int index = _produtos.indexWhere((p) => p.id == model.id);
-    if (index >= 0) {
-      final model = _produtos[index];
-      _produtos.remove(model);
+    try {
+      int index = _produtos.indexWhere((p) => p.id == model.id);
+      if (index >= 0) {
+        final model = _produtos[index];
+        _produtos.remove(model);
 
-      try {
-        await _dio.delete(
-          '${UrlConsts.firebase().produto}/${model.id}.json?auth=$_token',
-          data: model.toJson(),
-        );
-      } catch (e) {
-        _produtos.insert(index, model);
-        if (e is DioException) {
-          throw HttpException(
-            msg: 'Falha ao excluir o produto',
-            statusCode: e.response?.statusCode ?? 500,
+        try {
+          await _dio.delete(
+            '${UrlConsts.firebase().produto}/${model.id}.json?auth=$_token',
+            data: model.toJson(),
           );
+        } catch (e) {
+          _produtos.insert(index, model);
+          if (e is DioException) {
+            throw HttpException(
+              msg: 'Falha ao excluir o produto',
+              statusCode: e.response?.statusCode ?? 500,
+            );
+          }
+          rethrow;
         }
-        rethrow;
       }
+    } on DioException catch (e) {
+      throw HttpException(
+        msg: 'Erro ao excluir produto',
+        statusCode: e.response?.statusCode ?? 500,
+      );
+    } catch (e) {
+      throw HttpException(msg: 'Erro ao excluir produto: $e', statusCode: 500);
     }
   }
 
