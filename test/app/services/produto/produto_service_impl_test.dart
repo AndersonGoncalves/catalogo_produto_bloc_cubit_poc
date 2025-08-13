@@ -29,12 +29,15 @@ void main() {
       produtoRepository: produtoRepository,
     );
 
+    when(() => produtoRepository.produtos).thenReturn([]);
+
     when(() => produtoRepository.get()).thenAnswer((_) async {
-      return produtoRepository.add(
+      when(() => produtoRepository.produtos).thenReturn([
         Produto(id: '1', dataCadastro: DateTime.now(), nome: 'Malbec'),
-      );
+      ]);
     });
-    service.get();
+
+    await service.get();
     expect(service.produtos.length, 1);
   });
 }
