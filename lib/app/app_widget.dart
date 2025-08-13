@@ -19,25 +19,10 @@ class _AppWidgetState extends State<AppWidget> {
     return MaterialApp(
       localizationsDelegates: AppLocalizations.localizationsDelegates,
       supportedLocales: AppLocalizations.supportedLocales,
-      // localizationsDelegates: AppLocalizations.localizationsDelegates,
-      // supportedLocales: AppLocalizations.supportedLocales,
-      //ou
-      // localizationsDelegates: [
-      //   AppLocalizations.delegate,
-      //   GlobalMaterialLocalizations.delegate,
-      //   GlobalWidgetsLocalizations.delegate,
-      //   GlobalCupertinoLocalizations.delegate,
-      // ],
-      // supportedLocales: [
-      //   Locale('en'), // English
-      //   Locale('es'), // Spanish
-      //   Locale('pt'), // Portugues
-      // ],
-      // title: AppLocalizations.of(context)!.catalogoDeProdutos,
       theme: AppTheme.theme,
       debugShowCheckedModeBanner: false,
       initialRoute: AppRoutesConsts.home,
-      routes: AppRoutes.routes,
+      routes: {...AppRoutes.routes},
       onUnknownRoute: AppRoutes.onUnknownRoute,
     );
   }
